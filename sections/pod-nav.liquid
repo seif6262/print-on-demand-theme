@@ -1,0 +1,422 @@
+<style>
+  .pod-nav-{{ section.id }} {
+    position: {% if section.settings.sticky %}sticky{% else %}relative{% endif %};
+    top: 0;
+    z-index: 999;
+    background: {{ section.settings.bg_color }};
+    border-bottom: 1px solid {{ section.settings.border_color }};
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    font-family: 'DM Sans', sans-serif;
+  }
+  .pod-nav-inner-{{ section.id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: {{ section.settings.padding_y }}px {{ section.settings.padding_x }}px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .pod-nav-logo-{{ section.id }} {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: {{ section.settings.logo_size }}px;
+    text-decoration: none;
+    color: {{ section.settings.logo_color }};
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+  }
+  .pod-nav-logo-{{ section.id }} em {
+    color: {{ section.settings.logo_accent_color }};
+    font-style: normal;
+  }
+  .pod-nav-links-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    gap: {{ section.settings.links_gap }}px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    justify-content: center;
+  }
+  .pod-nav-links-{{ section.id }} a {
+    font-size: {{ section.settings.link_size }}px;
+    color: {{ section.settings.link_color }};
+    text-decoration: none;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .pod-nav-links-{{ section.id }} a:hover {
+    color: {{ section.settings.link_hover_color }};
+  }
+  .pod-nav-cta-{{ section.id }} {
+    font-size: 14px;
+    font-weight: 700;
+    background: {{ section.settings.cta_bg }};
+    color: {{ section.settings.cta_color }};
+    padding: {{ section.settings.cta_padding_y }}px {{ section.settings.cta_padding_x }}px;
+    border-radius: 100px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .pod-nav-cta-{{ section.id }}:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+    color: {{ section.settings.cta_color }};
+  }
+  .pod-nav-hamburger-{{ section.id }} {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 6px;
+  }
+  .pod-nav-hamburger-{{ section.id }} span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: {{ section.settings.logo_color }};
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+  .pod-nav-mobile-{{ section.id }} {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: {{ section.settings.mobile_bg }};
+    z-index: 9999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+  }
+  .pod-nav-mobile-{{ section.id }}.is-open {
+    display: flex;
+  }
+  .pod-nav-mobile-{{ section.id }} a {
+    font-family: 'Syne', sans-serif;
+    font-size: {{ section.settings.mobile_link_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.logo_color }};
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .pod-nav-mobile-{{ section.id }} a:hover {
+    color: {{ section.settings.link_hover_color }};
+  }
+  .pod-nav-mobile-close-{{ section.id }} {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: none;
+    border: none;
+    color: {{ section.settings.logo_color }};
+    font-size: 28px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px;
+  }
+  @media (max-width: 768px) {
+    .pod-nav-links-{{ section.id }},
+    .pod-nav-cta-wrapper-{{ section.id }} {
+      display: none;
+    }
+    .pod-nav-hamburger-{{ section.id }} {
+      display: flex;
+    }
+  }
+</style>
+
+<div class="pod-nav-{{ section.id }}">
+  <div class="pod-nav-inner-{{ section.id }}">
+
+    <a href="{{ section.settings.logo_url | default: '/' }}" class="pod-nav-logo-{{ section.id }}">
+      {{ section.settings.logo_word1 }}&nbsp;<em>{{ section.settings.logo_word2 }}</em>
+    </a>
+
+    <ul class="pod-nav-links-{{ section.id }}">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'nav_link' -%}
+          <li {{ block.shopify_attributes }}>
+            <a href="{{ block.settings.url }}">{{ block.settings.label }}</a>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+
+    <div class="pod-nav-cta-wrapper-{{ section.id }}" style="display:flex;align-items:center;gap:12px;">
+      {%- if section.settings.cta_text != blank -%}
+        <a href="{{ section.settings.cta_url }}" class="pod-nav-cta-{{ section.id }}">
+          {{ section.settings.cta_text }}
+        </a>
+      {%- endif -%}
+    </div>
+
+    <button
+      class="pod-nav-hamburger-{{ section.id }}"
+      id="pod-hamburger-{{ section.id }}"
+      aria-label="Open menu"
+    >
+      <span></span><span></span><span></span>
+    </button>
+
+  </div>
+</div>
+
+<div class="pod-nav-mobile-{{ section.id }}" id="pod-mobile-{{ section.id }}" role="dialog" aria-modal="true">
+  <button class="pod-nav-mobile-close-{{ section.id }}" id="pod-mobile-close-{{ section.id }}" aria-label="Close menu">✕</button>
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'nav_link' -%}
+      <a href="{{ block.settings.url }}">{{ block.settings.label }}</a>
+    {%- endif -%}
+  {%- endfor -%}
+  {%- if section.settings.cta_text != blank -%}
+    <a
+      href="{{ section.settings.cta_url }}"
+      style="background:{{ section.settings.cta_bg }};color:{{ section.settings.cta_color }};padding:14px 36px;border-radius:100px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:16px;"
+    >{{ section.settings.cta_text }}</a>
+  {%- endif -%}
+</div>
+
+<script>
+  (function () {
+    var hamburger = document.getElementById('pod-hamburger-{{ section.id }}');
+    var mobileMenu = document.getElementById('pod-mobile-{{ section.id }}');
+    var closeBtn   = document.getElementById('pod-mobile-close-{{ section.id }}');
+
+    function openMenu() {
+      mobileMenu.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      mobileMenu.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    if (hamburger) hamburger.addEventListener('click', openMenu);
+    if (closeBtn)   closeBtn.addEventListener('click', closeMenu);
+    if (mobileMenu) {
+      mobileMenu.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', closeMenu);
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "POD — Navigation",
+  "tag": "div",
+  "class": "pod-nav-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "🎨 الألوان"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "خلفية الشريط",
+      "default": "#0A0A0A"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "لون الحد السفلي",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "color",
+      "id": "logo_color",
+      "label": "لون الشعار",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "logo_accent_color",
+      "label": "لون الكلمة المميزة في الشعار",
+      "default": "#FFD600"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "لون روابط التنقل",
+      "default": "#AAAAAA"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_color",
+      "label": "لون الروابط عند التمرير",
+      "default": "#FFD600"
+    },
+    {
+      "type": "color",
+      "id": "cta_bg",
+      "label": "خلفية زرار CTA",
+      "default": "#FFD600"
+    },
+    {
+      "type": "color",
+      "id": "cta_color",
+      "label": "نص زرار CTA",
+      "default": "#0A0A0A"
+    },
+    {
+      "type": "color",
+      "id": "mobile_bg",
+      "label": "خلفية القائمة الموبايل",
+      "default": "#0A0A0A"
+    },
+    {
+      "type": "header",
+      "content": "✏️ المحتوى"
+    },
+    {
+      "type": "text",
+      "id": "logo_word1",
+      "label": "الشعار — الكلمة الأولى",
+      "default": "YOUR"
+    },
+    {
+      "type": "text",
+      "id": "logo_word2",
+      "label": "الشعار — الكلمة المميزة (باللون)",
+      "default": "BRAND"
+    },
+    {
+      "type": "url",
+      "id": "logo_url",
+      "label": "رابط الشعار"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "نص زرار CTA",
+      "default": "Start Designing"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "رابط زرار CTA"
+    },
+    {
+      "type": "header",
+      "content": "📐 الحجم والمساحة"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky",
+      "label": "شريط ثابت (Sticky)",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "logo_size",
+      "label": "حجم الشعار (px)",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "link_size",
+      "label": "حجم خط الروابط (px)",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_link_size",
+      "label": "حجم خط روابط الموبايل (px)",
+      "min": 18,
+      "max": 36,
+      "step": 1,
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "links_gap",
+      "label": "المسافة بين الروابط (px)",
+      "min": 12,
+      "max": 60,
+      "step": 4,
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_x",
+      "label": "حشو أفقي (px)",
+      "min": 16,
+      "max": 80,
+      "step": 4,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "label": "حشو عمودي (px)",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "cta_padding_x",
+      "label": "حشو زرار CTA أفقي (px)",
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "cta_padding_y",
+      "label": "حشو زرار CTA عمودي (px)",
+      "min": 6,
+      "max": 24,
+      "step": 1,
+      "default": 10
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav_link",
+      "name": "رابط تنقل",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "نص الرابط",
+          "default": "Products"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "الرابط"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "POD — Navigation",
+      "blocks": [
+        { "type": "nav_link", "settings": { "label": "Products" } },
+        { "type": "nav_link", "settings": { "label": "Design Tool" } },
+        { "type": "nav_link", "settings": { "label": "Pricing" } },
+        { "type": "nav_link", "settings": { "label": "About" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,446 @@
+<style>
+  .pod-hiw-{{ section.id }} {
+    background: {{ section.settings.bg_color }};
+    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_x }}px {{ section.settings.padding_bottom }}px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .pod-hiw-inner-{{ section.id }} {
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+  }
+  .pod-hiw-label-{{ section.id }} {
+    font-size: {{ section.settings.label_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.label_color }};
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: {{ section.settings.label_margin }}px;
+    text-align: {{ section.settings.text_align }};
+  }
+  .pod-hiw-heading-{{ section.id }} {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(24px, 4vw, {{ section.settings.heading_size }}px);
+    font-weight: 800;
+    color: {{ section.settings.heading_color }};
+    margin: 0 0 {{ section.settings.heading_margin }}px;
+    line-height: 1.15;
+    text-align: {{ section.settings.text_align }};
+  }
+  .pod-hiw-grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.columns }}, 1fr);
+    gap: {{ section.settings.gap }}px;
+    margin-top: {{ section.settings.grid_margin_top }}px;
+  }
+  .pod-hiw-step-{{ section.id }} {
+    background: {{ section.settings.card_bg }};
+    border: 1px solid {{ section.settings.card_border }};
+    border-radius: {{ section.settings.card_radius }}px;
+    padding: {{ section.settings.card_padding }}px;
+    position: relative;
+    transition: background 0.25s, border-color 0.25s, transform 0.25s;
+  }
+  .pod-hiw-step-{{ section.id }}:hover {
+    background: {{ section.settings.card_hover_bg }};
+    border-color: {{ section.settings.card_hover_border }};
+    transform: translateY(-3px);
+  }
+  .pod-hiw-number-{{ section.id }} {
+    font-family: 'Syne', sans-serif;
+    font-size: {{ section.settings.number_size }}px;
+    font-weight: 800;
+    color: {{ section.settings.number_color }};
+    line-height: 1;
+    margin-bottom: {{ section.settings.number_margin }}px;
+    display: block;
+    opacity: 0.15;
+  }
+  .pod-hiw-step-title-{{ section.id }} {
+    font-family: 'Syne', sans-serif;
+    font-size: {{ section.settings.step_title_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.title_color }};
+    margin: 0 0 {{ section.settings.title_margin }}px;
+  }
+  .pod-hiw-step-desc-{{ section.id }} {
+    font-size: {{ section.settings.desc_size }}px;
+    color: {{ section.settings.desc_color }};
+    line-height: 1.6;
+    margin: 0;
+  }
+  @media (max-width: 900px) {
+    .pod-hiw-grid-{{ section.id }} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 540px) {
+    .pod-hiw-grid-{{ section.id }} {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="pod-hiw-{{ section.id }}">
+  <div class="pod-hiw-inner-{{ section.id }}">
+
+    {%- if section.settings.label != blank -%}
+      <span class="pod-hiw-label-{{ section.id }}">{{ section.settings.label }}</span>
+    {%- endif -%}
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="pod-hiw-heading-{{ section.id }}">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    <div class="pod-hiw-grid-{{ section.id }}">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'step' -%}
+          <div class="pod-hiw-step-{{ section.id }}" {{ block.shopify_attributes }}>
+            {%- if block.settings.number != blank -%}
+              <span class="pod-hiw-number-{{ section.id }}">{{ block.settings.number }}</span>
+            {%- endif -%}
+            {%- if block.settings.title != blank -%}
+              <h3 class="pod-hiw-step-title-{{ section.id }}">{{ block.settings.title }}</h3>
+            {%- endif -%}
+            {%- if block.settings.description != blank -%}
+              <p class="pod-hiw-step-desc-{{ section.id }}">{{ block.settings.description }}</p>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "POD — How It Works",
+  "tag": "div",
+  "class": "pod-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "🎨 الألوان"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "لون الخلفية",
+      "default": "#0D0D0D"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "لون التسمية",
+      "default": "#FFD600"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "لون العنوان",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "number_color",
+      "label": "لون الأرقام",
+      "default": "#FFD600"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "لون عنوان الخطوة",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "desc_color",
+      "label": "لون وصف الخطوة",
+      "default": "#888888"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "خلفية الكارد",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "card_border",
+      "label": "حد الكارد",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "color",
+      "id": "card_hover_bg",
+      "label": "خلفية الكارد عند التمرير",
+      "default": "#141200"
+    },
+    {
+      "type": "color",
+      "id": "card_hover_border",
+      "label": "حد الكارد عند التمرير",
+      "default": "#3A2F00"
+    },
+    {
+      "type": "header",
+      "content": "✏️ المحتوى"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "التسمية الصغيرة",
+      "default": "HOW IT WORKS"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "العنوان الرئيسي",
+      "default": "From idea to doorstep in 4 easy steps"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "محاذاة النص",
+      "options": [
+        { "value": "left",   "label": "يسار" },
+        { "value": "center", "label": "وسط" },
+        { "value": "right",  "label": "يمين" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "📐 الحجم والمساحة"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "عدد الأعمدة (ديسكتوب)",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "أقصى عرض للمحتوى (px)",
+      "min": 800,
+      "max": 1400,
+      "step": 40,
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "label_size",
+      "label": "حجم التسمية (px)",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "label_margin",
+      "label": "مسافة أسفل التسمية (px)",
+      "min": 8,
+      "max": 32,
+      "step": 4,
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "حجم العنوان الأقصى (px)",
+      "min": 24,
+      "max": 64,
+      "step": 2,
+      "default": 38
+    },
+    {
+      "type": "range",
+      "id": "heading_margin",
+      "label": "مسافة أسفل العنوان (px)",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "grid_margin_top",
+      "label": "مسافة فوق الشبكة (px)",
+      "min": 16,
+      "max": 80,
+      "step": 8,
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "مسافة بين الخطوات (px)",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "تدوير زوايا الكارد (px)",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "label": "حشو الكارد (px)",
+      "min": 16,
+      "max": 56,
+      "step": 4,
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "number_size",
+      "label": "حجم رقم الخطوة (px)",
+      "min": 32,
+      "max": 100,
+      "step": 4,
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "number_margin",
+      "label": "مسافة أسفل الرقم (px)",
+      "min": 4,
+      "max": 32,
+      "step": 4,
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "step_title_size",
+      "label": "حجم عنوان الخطوة (px)",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "title_margin",
+      "label": "مسافة أسفل العنوان (px)",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "desc_size",
+      "label": "حجم خط الوصف (px)",
+      "min": 13,
+      "max": 18,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "حشو علوي (px)",
+      "min": 40,
+      "max": 160,
+      "step": 8,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "حشو سفلي (px)",
+      "min": 40,
+      "max": 160,
+      "step": 8,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_x",
+      "label": "حشو أفقي (px)",
+      "min": 16,
+      "max": 80,
+      "step": 4,
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "خطوة",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "رقم الخطوة",
+          "default": "01"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "عنوان الخطوة",
+          "default": "Choose a Product"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "وصف الخطوة",
+          "default": "Browse our catalog of 50+ customizable products and pick your favourite."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "POD — How It Works",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "number": "01",
+            "title": "Choose a Product",
+            "description": "Browse our catalog of 50+ customizable products and pick your favourite."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "number": "02",
+            "title": "Upload Your Design",
+            "description": "Upload your artwork or use our online design tool to create something amazing."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "number": "03",
+            "title": "We Print & Pack",
+            "description": "Your order is printed with premium quality inks and carefully packaged."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "number": "04",
+            "title": "Delivered to You",
+            "description": "Fast shipping straight to your door. Track every step of the journey."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

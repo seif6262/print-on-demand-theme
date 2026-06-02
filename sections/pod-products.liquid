@@ -1,0 +1,657 @@
+<style>
+  .pod-products-{{ section.id }} {
+    background: {{ section.settings.bg_color }};
+    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_x }}px {{ section.settings.padding_bottom }}px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .pod-products-inner-{{ section.id }} {
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+  }
+  .pod-products-label-{{ section.id }} {
+    font-size: {{ section.settings.label_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.label_color }};
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 12px;
+    text-align: {{ section.settings.text_align }};
+  }
+  .pod-products-heading-{{ section.id }} {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(24px, 4vw, {{ section.settings.heading_size }}px);
+    font-weight: 800;
+    color: {{ section.settings.heading_color }};
+    margin: 0 0 {{ section.settings.heading_margin }}px;
+    line-height: 1.1;
+    text-align: {{ section.settings.text_align }};
+  }
+  .pod-products-filters-{{ section.id }} {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: {{ section.settings.text_align }};
+    margin-bottom: {{ section.settings.filter_margin }}px;
+  }
+  .pod-filter-btn-{{ section.id }} {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 100px;
+    border: 1px solid {{ section.settings.filter_border }};
+    background: transparent;
+    color: {{ section.settings.filter_text }};
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .pod-filter-btn-{{ section.id }}:hover,
+  .pod-filter-btn-{{ section.id }}.active {
+    background: {{ section.settings.filter_active_bg }};
+    color: {{ section.settings.filter_active_text }};
+    border-color: {{ section.settings.filter_active_bg }};
+  }
+  .pod-products-grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.columns }}, 1fr);
+    gap: {{ section.settings.gap }}px;
+  }
+  .pod-product-card-{{ section.id }} {
+    background: {{ section.settings.card_bg }};
+    border: 1px solid {{ section.settings.card_border }};
+    border-radius: {{ section.settings.card_radius }}px;
+    overflow: hidden;
+    position: relative;
+    transition: border-color 0.25s, transform 0.25s, background 0.25s;
+    display: flex;
+    flex-direction: column;
+  }
+  .pod-product-card-{{ section.id }}:hover {
+    border-color: {{ section.settings.card_hover_border }};
+    background: {{ section.settings.card_hover_bg }};
+    transform: translateY(-4px);
+  }
+  .pod-product-card-{{ section.id }}[data-hidden="true"] {
+    display: none;
+  }
+  .pod-product-image-{{ section.id }} {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: {{ section.settings.emoji_size }}px;
+    background: {{ section.settings.image_bg }};
+    line-height: 1;
+  }
+  .pod-product-badge-{{ section.id }} {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: {{ section.settings.badge_bg }};
+    color: {{ section.settings.badge_color }};
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .pod-product-info-{{ section.id }} {
+    padding: {{ section.settings.info_padding }}px;
+    display: flex;
+    flex-direction: column;
+    gap: {{ section.settings.info_gap }}px;
+    flex: 1;
+  }
+  .pod-product-name-{{ section.id }} {
+    font-family: 'Syne', sans-serif;
+    font-size: {{ section.settings.name_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.name_color }};
+    margin: 0;
+    line-height: 1.2;
+  }
+  .pod-product-price-{{ section.id }} {
+    font-size: {{ section.settings.price_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.price_color }};
+    font-family: 'Syne', sans-serif;
+  }
+  .pod-product-btn-{{ section.id }} {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: {{ section.settings.prod_btn_bg }};
+    color: {{ section.settings.prod_btn_color }};
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    margin-top: auto;
+  }
+  .pod-product-btn-{{ section.id }}:hover {
+    background: {{ section.settings.prod_btn_hover_bg }};
+    color: {{ section.settings.prod_btn_hover_color }};
+  }
+  @media (max-width: 900px) {
+    .pod-products-grid-{{ section.id }} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 480px) {
+    .pod-products-grid-{{ section.id }} {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="pod-products-{{ section.id }}">
+  <div class="pod-products-inner-{{ section.id }}">
+
+    {%- if section.settings.label != blank -%}
+      <span class="pod-products-label-{{ section.id }}">{{ section.settings.label }}</span>
+    {%- endif -%}
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="pod-products-heading-{{ section.id }}">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- assign filter_blocks = section.blocks | where: 'type', 'filter' -%}
+    {%- if filter_blocks.size > 0 -%}
+      <div class="pod-products-filters-{{ section.id }}" id="pod-filters-{{ section.id }}">
+        <button
+          class="pod-filter-btn-{{ section.id }} active"
+          data-filter="all"
+          onclick="podFilter{{ section.id }}(this, 'all')"
+        >{{ section.settings.filter_all_label }}</button>
+        {%- for block in filter_blocks -%}
+          <button
+            class="pod-filter-btn-{{ section.id }}"
+            data-filter="{{ block.settings.category }}"
+            onclick="podFilter{{ section.id }}(this, '{{ block.settings.category }}')"
+            {{ block.shopify_attributes }}
+          >{{ block.settings.label }}</button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    <div class="pod-products-grid-{{ section.id }}" id="pod-grid-{{ section.id }}">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'product' -%}
+          <div
+            class="pod-product-card-{{ section.id }}"
+            data-cat="{{ block.settings.category }}"
+            {{ block.shopify_attributes }}
+          >
+            {%- if block.settings.badge != blank -%}
+              <span class="pod-product-badge-{{ section.id }}">{{ block.settings.badge }}</span>
+            {%- endif -%}
+
+            <div class="pod-product-image-{{ section.id }}">
+              {%- if block.settings.image != blank -%}
+                <img
+                  src="{{ block.settings.image | image_url: width: 400 }}"
+                  alt="{{ block.settings.name }}"
+                  width="400"
+                  height="400"
+                  loading="lazy"
+                  style="width:100%;height:100%;object-fit:cover;"
+                >
+              {%- else -%}
+                {{ block.settings.emoji }}
+              {%- endif -%}
+            </div>
+
+            <div class="pod-product-info-{{ section.id }}">
+              {%- if block.settings.name != blank -%}
+                <h3 class="pod-product-name-{{ section.id }}">{{ block.settings.name }}</h3>
+              {%- endif -%}
+              {%- if block.settings.price != blank -%}
+                <span class="pod-product-price-{{ section.id }}">{{ block.settings.price }}</span>
+              {%- endif -%}
+              <a
+                href="{{ block.settings.url | default: '#' }}"
+                class="pod-product-btn-{{ section.id }}"
+              >{{ section.settings.card_btn_label }} →</a>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function podFilter{{ section.id }}(btn, cat) {
+    document.querySelectorAll('.pod-filter-btn-{{ section.id }}').forEach(function(b) {
+      b.classList.remove('active');
+    });
+    btn.classList.add('active');
+
+    document.querySelectorAll('#pod-grid-{{ section.id }} .pod-product-card-{{ section.id }}').forEach(function(card) {
+      if (cat === 'all' || card.dataset.cat === cat) {
+        card.removeAttribute('data-hidden');
+      } else {
+        card.setAttribute('data-hidden', 'true');
+      }
+    });
+  }
+</script>
+
+{% schema %}
+{
+  "name": "POD — Products Grid",
+  "tag": "div",
+  "class": "pod-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "🎨 الألوان — الخلفية والعناوين"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "لون الخلفية",
+      "default": "#0A0A0A"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "لون التسمية",
+      "default": "#FFD600"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "لون العنوان",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "🎨 الألوان — الكروت"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "خلفية الكارد",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "card_border",
+      "label": "حد الكارد",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "color",
+      "id": "card_hover_bg",
+      "label": "خلفية الكارد عند التمرير",
+      "default": "#141200"
+    },
+    {
+      "type": "color",
+      "id": "card_hover_border",
+      "label": "حد الكارد عند التمرير",
+      "default": "#3A2F00"
+    },
+    {
+      "type": "color",
+      "id": "image_bg",
+      "label": "خلفية صورة المنتج",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "color",
+      "id": "name_color",
+      "label": "لون اسم المنتج",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "price_color",
+      "label": "لون السعر",
+      "default": "#FFD600"
+    },
+    {
+      "type": "color",
+      "id": "badge_bg",
+      "label": "خلفية الشارة",
+      "default": "#FFD600"
+    },
+    {
+      "type": "color",
+      "id": "badge_color",
+      "label": "لون نص الشارة",
+      "default": "#0A0A0A"
+    },
+    {
+      "type": "header",
+      "content": "🎨 الألوان — الفلتر والزرار"
+    },
+    {
+      "type": "color",
+      "id": "filter_border",
+      "label": "حد أزرار الفلتر",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "filter_text",
+      "label": "لون نص الفلتر",
+      "default": "#AAAAAA"
+    },
+    {
+      "type": "color",
+      "id": "filter_active_bg",
+      "label": "خلفية الفلتر النشط",
+      "default": "#FFD600"
+    },
+    {
+      "type": "color",
+      "id": "filter_active_text",
+      "label": "نص الفلتر النشط",
+      "default": "#0A0A0A"
+    },
+    {
+      "type": "color",
+      "id": "prod_btn_bg",
+      "label": "خلفية زرار الكارد",
+      "default": "#1A1500"
+    },
+    {
+      "type": "color",
+      "id": "prod_btn_color",
+      "label": "لون نص زرار الكارد",
+      "default": "#FFD600"
+    },
+    {
+      "type": "color",
+      "id": "prod_btn_hover_bg",
+      "label": "خلفية زرار الكارد عند التمرير",
+      "default": "#FFD600"
+    },
+    {
+      "type": "color",
+      "id": "prod_btn_hover_color",
+      "label": "نص زرار الكارد عند التمرير",
+      "default": "#0A0A0A"
+    },
+    {
+      "type": "header",
+      "content": "✏️ المحتوى"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "التسمية الصغيرة",
+      "default": "OUR PRODUCTS"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "العنوان الرئيسي",
+      "default": "Print on anything."
+    },
+    {
+      "type": "text",
+      "id": "filter_all_label",
+      "label": "نص فلتر الكل",
+      "default": "All"
+    },
+    {
+      "type": "text",
+      "id": "card_btn_label",
+      "label": "نص زرار الكارد",
+      "default": "Customize"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "محاذاة العنوان والفلتر",
+      "options": [
+        { "value": "left",   "label": "يسار" },
+        { "value": "center", "label": "وسط" },
+        { "value": "right",  "label": "يمين" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "📐 الحجم والمساحة"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "عدد الأعمدة (ديسكتوب)",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "أقصى عرض (px)",
+      "min": 800,
+      "max": 1400,
+      "step": 40,
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "مسافة بين الكروت (px)",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "تدوير زوايا الكارد (px)",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "emoji_size",
+      "label": "حجم الإيموجي / الأيقونة (px)",
+      "min": 32,
+      "max": 120,
+      "step": 4,
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "info_padding",
+      "label": "حشو بيانات الكارد (px)",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "info_gap",
+      "label": "مسافة بين عناصر الكارد (px)",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "label_size",
+      "label": "حجم التسمية (px)",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "حجم العنوان الأقصى (px)",
+      "min": 24,
+      "max": 64,
+      "step": 2,
+      "default": 38
+    },
+    {
+      "type": "range",
+      "id": "heading_margin",
+      "label": "مسافة أسفل العنوان (px)",
+      "min": 16,
+      "max": 64,
+      "step": 4,
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "filter_margin",
+      "label": "مسافة أسفل الفلتر (px)",
+      "min": 16,
+      "max": 64,
+      "step": 4,
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "name_size",
+      "label": "حجم اسم المنتج (px)",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "price_size",
+      "label": "حجم السعر (px)",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "حشو علوي (px)",
+      "min": 40,
+      "max": 160,
+      "step": 8,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "حشو سفلي (px)",
+      "min": 40,
+      "max": 160,
+      "step": 8,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_x",
+      "label": "حشو أفقي (px)",
+      "min": 16,
+      "max": 80,
+      "step": 4,
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "filter",
+      "name": "تصنيف (فلتر)",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "اسم التصنيف",
+          "default": "Apparel"
+        },
+        {
+          "type": "text",
+          "id": "category",
+          "label": "كود التصنيف (بالإنجليزية بدون مسافات)",
+          "default": "apparel",
+          "info": "هيُستخدم للفلترة — يجب أن يطابق كود التصنيف في بيانات المنتج"
+        }
+      ]
+    },
+    {
+      "type": "product",
+      "name": "منتج",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "اسم المنتج",
+          "default": "Premium T-Shirt"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "صورة المنتج"
+        },
+        {
+          "type": "text",
+          "id": "emoji",
+          "label": "إيموجي (يظهر لو مفيش صورة)",
+          "default": "👕"
+        },
+        {
+          "type": "text",
+          "id": "category",
+          "label": "كود التصنيف (يجب أن يطابق الفلتر)",
+          "default": "apparel"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "السعر",
+          "default": "$14.99"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "شارة (اتركها فارغة لو مفيش)",
+          "default": "Best Seller"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "رابط المنتج"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "POD — Products Grid",
+      "blocks": [
+        { "type": "filter", "settings": { "label": "Apparel",      "category": "apparel"     } },
+        { "type": "filter", "settings": { "label": "Accessories",  "category": "accessories" } },
+        { "type": "filter", "settings": { "label": "Home & Living","category": "home"        } },
+        { "type": "product", "settings": { "name": "Premium T-Shirt",  "emoji": "👕", "category": "apparel",     "price": "$14.99", "badge": "Best Seller" } },
+        { "type": "product", "settings": { "name": "Unisex Hoodie",    "emoji": "🧥", "category": "apparel",     "price": "$29.99", "badge": "" } },
+        { "type": "product", "settings": { "name": "Snapback Cap",     "emoji": "🧢", "category": "accessories", "price": "$18.99", "badge": "New" } },
+        { "type": "product", "settings": { "name": "Phone Case",       "emoji": "📱", "category": "accessories", "price": "$12.99", "badge": "" } },
+        { "type": "product", "settings": { "name": "Ceramic Mug",      "emoji": "☕", "category": "home",        "price": "$9.99",  "badge": "" } },
+        { "type": "product", "settings": { "name": "Wall Poster",      "emoji": "🖼️", "category": "home",        "price": "$11.99", "badge": "Popular" } },
+        { "type": "product", "settings": { "name": "Custom Socks",     "emoji": "🧦", "category": "apparel",     "price": "$8.99",  "badge": "" } },
+        { "type": "product", "settings": { "name": "Tote Bag",         "emoji": "👜", "category": "accessories", "price": "$13.99", "badge": "" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

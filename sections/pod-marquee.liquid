@@ -1,0 +1,203 @@
+<style>
+  .pod-marquee-{{ section.id }} {
+    background: {{ section.settings.bg_color }};
+    padding: {{ section.settings.padding_y }}px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .pod-marquee-track-{{ section.id }} {
+    display: inline-flex;
+    animation: pod-marquee-{{ section.id }} {{ section.settings.speed }}s linear infinite;
+  }
+  .pod-marquee-{{ section.id }}:hover .pod-marquee-track-{{ section.id }} {
+    animation-play-state: {% if section.settings.pause_on_hover %}paused{% else %}running{% endif %};
+  }
+  .pod-marquee-item-{{ section.id }} {
+    font-family: 'DM Sans', sans-serif;
+    font-size: {{ section.settings.font_size }}px;
+    font-weight: {{ section.settings.font_weight }};
+    color: {{ section.settings.text_color }};
+    letter-spacing: {{ section.settings.letter_spacing }}px;
+    text-transform: {% if section.settings.uppercase %}uppercase{% else %}none{% endif %};
+    padding: 0 {{ section.settings.item_gap }}px;
+    display: inline-flex;
+    align-items: center;
+    gap: {{ section.settings.item_gap }}px;
+  }
+  .pod-marquee-sep-{{ section.id }} {
+    color: {{ section.settings.separator_color }};
+    font-size: {{ section.settings.separator_size }}px;
+  }
+  @keyframes pod-marquee-{{ section.id }} {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+</style>
+
+{%- assign items_raw = section.settings.items | split: '✦' -%}
+
+<div class="pod-marquee-{{ section.id }}" aria-hidden="true">
+  <div class="pod-marquee-track-{{ section.id }}">
+    {%- comment -%} Duplicate for seamless loop {%- endcomment -%}
+    {%- for _i in (1..2) -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'marquee_item' -%}
+          <span class="pod-marquee-item-{{ section.id }}" {{ block.shopify_attributes }}>
+            {{ block.settings.text }}
+            <span class="pod-marquee-sep-{{ section.id }}">{{ section.settings.separator }}</span>
+          </span>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "POD — Marquee",
+  "tag": "div",
+  "class": "pod-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "🎨 الألوان"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "لون الخلفية",
+      "default": "#FFD600"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "لون النص",
+      "default": "#0A0A0A"
+    },
+    {
+      "type": "color",
+      "id": "separator_color",
+      "label": "لون الفاصل",
+      "default": "#0A0A0A"
+    },
+    {
+      "type": "header",
+      "content": "✏️ النص"
+    },
+    {
+      "type": "text",
+      "id": "separator",
+      "label": "رمز الفاصل",
+      "default": "✦"
+    },
+    {
+      "type": "header",
+      "content": "📐 الحجم والتحريك"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "حجم الخط (px)",
+      "min": 11,
+      "max": 28,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "font_weight",
+      "label": "سماكة الخط",
+      "min": 400,
+      "max": 800,
+      "step": 100,
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "تباعد الحروف (px)",
+      "min": 0,
+      "max": 6,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "separator_size",
+      "label": "حجم الفاصل (px)",
+      "min": 8,
+      "max": 24,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "item_gap",
+      "label": "مسافة بين العناصر (px)",
+      "min": 16,
+      "max": 80,
+      "step": 4,
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "سرعة التحريك (ثانية — أقل = أسرع)",
+      "min": 5,
+      "max": 60,
+      "step": 1,
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "label": "حشو عمودي (px)",
+      "min": 6,
+      "max": 40,
+      "step": 2,
+      "default": 14
+    },
+    {
+      "type": "checkbox",
+      "id": "uppercase",
+      "label": "نص بأحرف كبيرة",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "توقف عند التمرير بالماوس",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "marquee_item",
+      "name": "عنصر",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "النص",
+          "default": "T-Shirts"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "POD — Marquee",
+      "blocks": [
+        { "type": "marquee_item", "settings": { "text": "T-Shirts" } },
+        { "type": "marquee_item", "settings": { "text": "Hoodies" } },
+        { "type": "marquee_item", "settings": { "text": "Mugs" } },
+        { "type": "marquee_item", "settings": { "text": "Phone Cases" } },
+        { "type": "marquee_item", "settings": { "text": "Tote Bags" } },
+        { "type": "marquee_item", "settings": { "text": "Stickers" } },
+        { "type": "marquee_item", "settings": { "text": "Posters" } },
+        { "type": "marquee_item", "settings": { "text": "Caps" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
