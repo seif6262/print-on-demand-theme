@@ -12,6 +12,50 @@
     overflow: hidden;
     font-family: 'DM Sans', sans-serif;
   }
+
+  /* ── Background Image ── */
+  .pod-hero-bg-{{ section.id }} {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .pod-hero-bg-{{ section.id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: {{ section.settings.image_fit }};
+    object-position: {{ section.settings.image_position }};
+    display: block;
+  }
+  .pod-hero-overlay-{{ section.id }} {
+    position: absolute;
+    inset: 0;
+    background: {{ section.settings.overlay_color }};
+    opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    z-index: 1;
+  }
+
+  /* Desktop image shown by default, mobile image hidden */
+  .pod-hero-bg-desktop-{{ section.id }} { display: block; }
+  .pod-hero-bg-mobile-{{ section.id }}  { display: none;  }
+
+  @media (max-width: 767px) {
+    .pod-hero-bg-desktop-{{ section.id }} { display: none;  }
+    .pod-hero-bg-mobile-{{ section.id }}  { display: block; }
+    .pod-hero-{{ section.id }} {
+      min-height: {{ section.settings.min_height_mobile }}vh;
+      padding: {{ section.settings.padding_top_mobile }}px {{ section.settings.padding_x_mobile }}px {{ section.settings.padding_bottom_mobile }}px;
+    }
+  }
+
+  /* All content sits above bg + overlay */
+  .pod-hero-badge-{{ section.id }},
+  .pod-hero-heading-{{ section.id }},
+  .pod-hero-subtext-{{ section.id }},
+  .pod-hero-buttons-{{ section.id }} {
+    position: relative;
+    z-index: 2;
+  }
+
   .pod-hero-gradient-{{ section.id }} {
     position: absolute;
     top: -20%;
@@ -21,6 +65,7 @@
     height: 500px;
     background: radial-gradient(ellipse at center, {{ section.settings.gradient_color }}18 0%, transparent 70%);
     pointer-events: none;
+    z-index: 1;
     display: {% if section.settings.show_gradient %}block{% else %}none{% endif %};
   }
   .pod-hero-badge-{{ section.id }} {
@@ -137,6 +182,50 @@
 </style>
 
 <div class="pod-hero-{{ section.id }}">
+
+  {%- comment -%} Background Images {%- endcomment -%}
+  {%- if section.settings.desktop_image != blank -%}
+    <div class="pod-hero-bg-{{ section.id }} pod-hero-bg-desktop-{{ section.id }}">
+      <img
+        src="{{ section.settings.desktop_image | image_url: width: 2000 }}"
+        alt=""
+        width="2000"
+        height="1000"
+        loading="eager"
+        fetchpriority="high"
+      >
+    </div>
+  {%- endif -%}
+
+  {%- if section.settings.mobile_image != blank -%}
+    <div class="pod-hero-bg-{{ section.id }} pod-hero-bg-mobile-{{ section.id }}">
+      <img
+        src="{{ section.settings.mobile_image | image_url: width: 800 }}"
+        alt=""
+        width="800"
+        height="1000"
+        loading="eager"
+        fetchpriority="high"
+      >
+    </div>
+  {%- elsif section.settings.desktop_image != blank -%}
+    {%- comment -%} Fallback: use desktop image on mobile if no mobile image set {%- endcomment -%}
+    <div class="pod-hero-bg-{{ section.id }} pod-hero-bg-mobile-{{ section.id }}">
+      <img
+        src="{{ section.settings.desktop_image | image_url: width: 800 }}"
+        alt=""
+        width="800"
+        height="1000"
+        loading="eager"
+        fetchpriority="high"
+      >
+    </div>
+  {%- endif -%}
+
+  {%- if section.settings.overlay_opacity > 0 -%}
+    <div class="pod-hero-overlay-{{ section.id }}"></div>
+  {%- endif -%}
+
   <div class="pod-hero-gradient-{{ section.id }}"></div>
 
   {%- if section.settings.badge_text != blank -%}
@@ -184,12 +273,71 @@
   "settings": [
     {
       "type": "header",
+      "content": "🖼️ صورة الخلفية — ديسكتوب"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "صورة الديسكتوب"
+    },
+    {
+      "type": "header",
+      "content": "📱 صورة الخلفية — موبايل"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "صورة الموبايل",
+      "info": "لو فارغة هتستخدم صورة الديسكتوب"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "طريقة ملء الصورة",
+      "options": [
+        { "value": "cover",   "label": "Cover (ملء كامل)" },
+        { "value": "contain", "label": "Contain (الصورة كاملة)" },
+        { "value": "fill",    "label": "Fill (تمدد)" }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "موضع الصورة",
+      "options": [
+        { "value": "center center", "label": "وسط" },
+        { "value": "center top",    "label": "أعلى الوسط" },
+        { "value": "center bottom", "label": "أسفل الوسط" },
+        { "value": "left center",   "label": "يسار" },
+        { "value": "right center",  "label": "يمين" }
+      ],
+      "default": "center center"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "لون الطبقة فوق الصورة",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "شفافية الطبقة فوق الصورة (%)",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "default": 50,
+      "info": "0 = شفافة كاملاً، 90 = معتمة تقريباً"
+    },
+    {
+      "type": "header",
       "content": "🎨 الألوان"
     },
     {
       "type": "color",
       "id": "bg_color",
-      "label": "لون الخلفية",
+      "label": "لون الخلفية (لو مفيش صورة)",
       "default": "#0A0A0A"
     },
     {
@@ -513,6 +661,46 @@
       "max": 80,
       "step": 4,
       "default": 24
+    },
+    {
+      "type": "header",
+      "content": "📱 الموبايل"
+    },
+    {
+      "type": "range",
+      "id": "min_height_mobile",
+      "label": "الارتفاع الأدنى موبايل (vh)",
+      "min": 40,
+      "max": 100,
+      "step": 5,
+      "default": 75
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "حشو علوي موبايل (px)",
+      "min": 40,
+      "max": 160,
+      "step": 8,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "حشو سفلي موبايل (px)",
+      "min": 40,
+      "max": 160,
+      "step": 8,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_x_mobile",
+      "label": "حشو أفقي موبايل (px)",
+      "min": 16,
+      "max": 40,
+      "step": 4,
+      "default": 20
     }
   ],
   "presets": [
