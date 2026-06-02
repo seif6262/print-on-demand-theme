@@ -209,6 +209,62 @@
         "pause_on_hover": true
       }
     },
+    "pod_products_Jej6Db": {
+      "type": "pod-products",
+      "name": "POD — Products Grid",
+      "settings": {
+        "bg_color": "#0a0a0a",
+        "label_color": "#ffd600",
+        "heading_color": "#ffffff",
+        "card_bg": "#111111",
+        "card_border": "#1a1a1a",
+        "card_hover_bg": "#141200",
+        "card_hover_border": "#3a2f00",
+        "image_bg": "#1a1a1a",
+        "name_color": "#ffffff",
+        "price_color": "#ffd600",
+        "compare_price_color": "#555555",
+        "badge_bg": "#ffd600",
+        "badge_color": "#0a0a0a",
+        "filter_border": "#333333",
+        "filter_text": "#aaaaaa",
+        "filter_active_bg": "#ffd600",
+        "filter_active_text": "#0a0a0a",
+        "prod_btn_bg": "#1a1500",
+        "prod_btn_color": "#ffd600",
+        "prod_btn_hover_bg": "#ffd600",
+        "prod_btn_hover_color": "#0a0a0a",
+        "label": "OUR PRODUCTS",
+        "heading": "Print on anything.",
+        "filter_all_label": "All",
+        "card_btn_label": "Customize",
+        "text_align": "center",
+        "products_per_tab": 8,
+        "columns": 4,
+        "gap": 20,
+        "padding_x_mobile": 16,
+        "gap_mobile": 10,
+        "info_padding_mobile": 12,
+        "name_size_mobile": 13,
+        "max_width": 1200,
+        "card_radius": 16,
+        "fallback_emoji_size": 64,
+        "info_padding": 20,
+        "label_size": 12,
+        "heading_size": 38,
+        "heading_margin": 32,
+        "filter_gap": 10,
+        "filter_size": 13,
+        "filter_pad_x": 20,
+        "filter_pad_y": 8,
+        "filter_margin": 32,
+        "name_size": 16,
+        "price_size": 16,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_x": 40
+      }
+    },
     "pod_how_it_works_CxTG8U": {
       "type": "pod-how-it-works",
       "blocks": {
@@ -281,62 +337,6 @@
         "step_title_size": 18,
         "title_margin": 8,
         "desc_size": 14,
-        "padding_top": 80,
-        "padding_bottom": 80,
-        "padding_x": 40
-      }
-    },
-    "pod_products_Jej6Db": {
-      "type": "pod-products",
-      "name": "POD — Products Grid",
-      "settings": {
-        "bg_color": "#0a0a0a",
-        "label_color": "#ffd600",
-        "heading_color": "#ffffff",
-        "card_bg": "#111111",
-        "card_border": "#1a1a1a",
-        "card_hover_bg": "#141200",
-        "card_hover_border": "#3a2f00",
-        "image_bg": "#1a1a1a",
-        "name_color": "#ffffff",
-        "price_color": "#ffd600",
-        "compare_price_color": "#555555",
-        "badge_bg": "#ffd600",
-        "badge_color": "#0a0a0a",
-        "filter_border": "#333333",
-        "filter_text": "#aaaaaa",
-        "filter_active_bg": "#ffd600",
-        "filter_active_text": "#0a0a0a",
-        "prod_btn_bg": "#1a1500",
-        "prod_btn_color": "#ffd600",
-        "prod_btn_hover_bg": "#ffd600",
-        "prod_btn_hover_color": "#0a0a0a",
-        "label": "OUR PRODUCTS",
-        "heading": "Print on anything.",
-        "filter_all_label": "All",
-        "card_btn_label": "Customize",
-        "text_align": "center",
-        "products_per_tab": 8,
-        "columns": 4,
-        "gap": 20,
-        "padding_x_mobile": 16,
-        "gap_mobile": 10,
-        "info_padding_mobile": 12,
-        "name_size_mobile": 13,
-        "max_width": 1200,
-        "card_radius": 16,
-        "fallback_emoji_size": 64,
-        "info_padding": 20,
-        "label_size": 12,
-        "heading_size": 38,
-        "heading_margin": 32,
-        "filter_gap": 10,
-        "filter_size": 13,
-        "filter_pad_x": 20,
-        "filter_pad_y": 8,
-        "filter_margin": 32,
-        "name_size": 16,
-        "price_size": 16,
         "padding_top": 80,
         "padding_bottom": 80,
         "padding_x": 40
@@ -537,296 +537,140 @@
         "padding_x": 40
       }
     },
-    "section_NQ4hNX": {
-      "type": "section",
+    "pod_faq_QtaHR7": {
+      "type": "pod-faq",
       "blocks": {
-        "text_7nMWaH": {
-          "type": "text",
-          "name": "t:names.heading",
+        "faq_item_jfiLJ9": {
+          "type": "faq_item",
           "settings": {
-            "text": "<h2>Frequently asked questions</h2>",
-            "width": "fit-content",
-            "max_width": "narrow",
-            "alignment": "left",
-            "type_preset": "h3",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "question": "How long does delivery take?",
+            "answer": "Most orders are dispatched within 48 hours and delivered within 5-7 business days depending on your location.",
+            "open_by_default": true
+          }
         },
-        "accordion_Dp6kGr": {
-          "type": "accordion",
-          "name": "t:names.accordion",
+        "faq_item_3LtimX": {
+          "type": "faq_item",
           "settings": {
-            "icon": "caret",
-            "dividers": true,
-            "type_preset": "h5",
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "accordion_row_y8aGGw": {
-              "type": "_accordion-row",
-              "settings": {
-                "heading": "What is the return policy?",
-                "open_by_default": false,
-                "icon": "none",
-                "width": 20
-              },
-              "blocks": {
-                "text_7tiLFF": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Our goal is for every customer to be totally satisfied with their purchase. If this isn't the case, let us know and we'll do our best to work with you to make it right.</p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_7tiLFF"
-              ]
-            },
-            "accordion_row_78zEnY": {
-              "type": "_accordion-row",
-              "settings": {
-                "heading": "Are any purchases final sale?",
-                "open_by_default": false,
-                "icon": "none",
-                "width": 20
-              },
-              "blocks": {
-                "text_h6HD8H": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>We are unable to accept returns on certain items. These will be carefully marked before purchase.</p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_h6HD8H"
-              ]
-            },
-            "accordion_row_7ktGfQ": {
-              "type": "_accordion-row",
-              "name": "t:names.accordion_row",
-              "settings": {
-                "heading": "When will I get my order?",
-                "open_by_default": false,
-                "icon": "none",
-                "width": 20
-              },
-              "blocks": {
-                "text_TwTHGP": {
-                  "type": "text",
-                  "name": "t:names.text",
-                  "settings": {
-                    "text": "<p>We will work quickly to ship your order as soon as possible. Once your order has shipped, you will receive an email with further information. Delivery times vary depending on your location.</p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_TwTHGP"
-              ]
-            },
-            "accordion_row_gRX9Bw": {
-              "type": "_accordion-row",
-              "name": "t:names.accordion_row",
-              "settings": {
-                "heading": "Where are your products manufactured?",
-                "open_by_default": false,
-                "icon": "none",
-                "width": 20
-              },
-              "blocks": {
-                "text_cW9JCe": {
-                  "type": "text",
-                  "name": "t:names.text",
-                  "settings": {
-                    "text": "<p>Our products are manufactured both locally and globally. We carefully select our manufacturing partners to ensure our products are high quality and a fair value.</p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_cW9JCe"
-              ]
-            },
-            "accordion_row_eNxjRP": {
-              "type": "_accordion-row",
-              "name": "t:names.accordion_row",
-              "settings": {
-                "heading": "How much does shipping cost?",
-                "open_by_default": false,
-                "icon": "none",
-                "width": 20
-              },
-              "blocks": {
-                "text_bx3tDG": {
-                  "type": "text",
-                  "name": "t:names.text",
-                  "settings": {
-                    "text": "<p>Shipping is calculated based on your location and the items in your order. You will always know the shipping price before you purchase.</p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "color": "var(--color-foreground)",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_bx3tDG"
-              ]
-            }
-          },
-          "block_order": [
-            "accordion_row_y8aGGw",
-            "accordion_row_78zEnY",
-            "accordion_row_7ktGfQ",
-            "accordion_row_gRX9Bw",
-            "accordion_row_eNxjRP"
-          ]
+            "question": "Can I order just one item?",
+            "answer": "Absolutely! We have no minimum order quantity. Order as few or as many as you like.",
+            "open_by_default": false
+          }
+        },
+        "faq_item_qwckW8": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What file formats do you accept for designs?",
+            "answer": "We accept PNG, JPG, and SVG files. For best results, upload high-resolution images (at least 300 DPI).",
+            "open_by_default": false
+          }
+        },
+        "faq_item_FQJtbY": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I return or exchange my order?",
+            "answer": "Yes! We offer easy returns within 14 days if there is a print quality issue. Custom designs cannot be refunded unless there is a defect.",
+            "open_by_default": false
+          }
+        },
+        "faq_item_pBbtkE": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you ship internationally?",
+            "answer": "Yes, we ship to 150+ countries worldwide with reliable tracking on every order.",
+            "open_by_default": false
+          }
         }
       },
       "block_order": [
-        "text_7nMWaH",
-        "accordion_Dp6kGr"
+        "faq_item_jfiLJ9",
+        "faq_item_3LtimX",
+        "faq_item_qwckW8",
+        "faq_item_FQJtbY",
+        "faq_item_pBbtkE"
       ],
-      "name": "t:names.faq_section",
+      "name": "POD — FAQ",
       "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 32,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-5",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "bg_color": "#0A0A0A",
+        "label_color": "#FFD600",
+        "heading_color": "#FFFFFF",
+        "item_bg": "#111111",
+        "item_border": "#1A1A1A",
+        "active_border": "#3A2F00",
+        "question_color": "#FFFFFF",
+        "active_question_color": "#FFD600",
+        "answer_color": "#888888",
+        "icon_bg": "#1A1A1A",
+        "icon_color": "#FFFFFF",
+        "active_icon_bg": "#FFD600",
+        "active_icon_color": "#0A0A0A",
+        "label": "FAQ",
+        "heading": "Got questions? We have answers.",
+        "one_open_at_a_time": true,
+        "text_align": "center",
+        "max_width": 800,
+        "item_gap": 10,
+        "item_radius": 12,
+        "question_size": 16,
+        "answer_size": 15,
+        "question_padding": 20,
+        "question_padding_x": 24,
+        "answer_padding_top": 16,
+        "answer_padding_bottom": 20,
+        "icon_size": 32,
+        "label_size": 12,
+        "heading_size": 38,
+        "heading_margin": 48,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_x": 40
+      }
+    },
+    "pod_countdown_Q7gJQN": {
+      "type": "pod-countdown",
+      "name": "POD — Countdown Timer",
+      "settings": {
+        "bg_color": "#0D0D0D",
+        "heading_color": "#FFFFFF",
+        "subtext_color": "#888888",
+        "badge_bg": "#FFD600",
+        "badge_color": "#0A0A0A",
+        "box_bg": "#111111",
+        "box_border": "#1A1A1A",
+        "tick_border": "#FFD600",
+        "number_color": "#FFD600",
+        "colon_color": "#FFD600",
+        "unit_label_color": "#555555",
+        "btn_bg": "#FFD600",
+        "btn_color": "#0A0A0A",
+        "btn_hover_bg": "#FFE033",
+        "badge": "⏰ Limited Time Offer",
+        "heading": "Sale ends in...",
+        "subtext": "Don't miss out — grab your custom gear before the deal expires!",
+        "target_date": "2026-06-10T23:59:59",
+        "label_days": "Days",
+        "label_hours": "Hours",
+        "label_minutes": "Mins",
+        "label_seconds": "Secs",
+        "expired_text": "This offer has ended. Check out our latest deals!",
+        "btn_text": "Shop the Sale →",
+        "btn_url": "shopify://collections/all",
+        "max_width": 720,
+        "heading_size": 38,
+        "heading_margin": 16,
+        "subtext_size": 15,
+        "timer_margin_top": 32,
+        "timer_gap": 16,
+        "box_size": 92,
+        "box_radius": 12,
+        "number_size": 38,
+        "unit_label_size": 11,
+        "btn_margin_top": 32,
+        "btn_size": 15,
+        "btn_padding_x": 36,
+        "btn_padding_y": 16,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_x": 40
       }
     },
     "pod_footer_PbTK4q": {
@@ -885,11 +729,12 @@
     "pod_nav_Q9WXyY",
     "pod_hero_yjXDpX",
     "pod_marquee_h4V3kM",
-    "pod_how_it_works_CxTG8U",
     "pod_products_Jej6Db",
+    "pod_how_it_works_CxTG8U",
     "pod_why_us_kyjAJq",
     "pod_testimonials_GGddH4",
-    "section_NQ4hNX",
+    "pod_faq_QtaHR7",
+    "pod_countdown_Q7gJQN",
     "pod_footer_PbTK4q"
   ]
 }
