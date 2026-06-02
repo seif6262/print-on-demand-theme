@@ -476,6 +476,133 @@
         "padding-block-end": 48
       }
     },
+    "pod_countdown_JHwpae": {
+      "type": "pod-countdown",
+      "name": "POD — Countdown Timer",
+      "settings": {
+        "bg_color": "#0D0D0D",
+        "heading_color": "#FFFFFF",
+        "subtext_color": "#888888",
+        "badge_bg": "#FFD600",
+        "badge_color": "#0A0A0A",
+        "box_bg": "#111111",
+        "box_border": "#1A1A1A",
+        "tick_border": "#FFD600",
+        "number_color": "#FFD600",
+        "colon_color": "#FFD600",
+        "unit_label_color": "#555555",
+        "btn_bg": "#FFD600",
+        "btn_color": "#0A0A0A",
+        "btn_hover_bg": "#FFE033",
+        "badge": "⏰ Limited Time Offer",
+        "heading": "Sale ends in...",
+        "subtext": "Don't miss out — grab your custom gear before the deal expires!",
+        "target_date": "2026-06-10T23:59:59",
+        "label_days": "Days",
+        "label_hours": "Hours",
+        "label_minutes": "Mins",
+        "label_seconds": "Secs",
+        "expired_text": "This offer has ended. Check out our latest deals!",
+        "btn_text": "Shop the Sale →",
+        "btn_url": "",
+        "max_width": 720,
+        "heading_size": 38,
+        "heading_margin": 16,
+        "subtext_size": 15,
+        "timer_margin_top": 32,
+        "timer_gap": 16,
+        "box_size": 92,
+        "box_radius": 12,
+        "number_size": 38,
+        "unit_label_size": 11,
+        "btn_margin_top": 32,
+        "btn_size": 15,
+        "btn_padding_x": 36,
+        "btn_padding_y": 16,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_x": 40
+      }
+    },
+    "pod_marquee_KHWNq3": {
+      "type": "pod-marquee",
+      "blocks": {
+        "marquee_item_a7MJke": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "T-Shirts"
+          }
+        },
+        "marquee_item_apPx3P": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "Hoodies"
+          }
+        },
+        "marquee_item_3FQcf3": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "Mugs"
+          }
+        },
+        "marquee_item_E9XFwD": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "Phone Cases"
+          }
+        },
+        "marquee_item_mzhnEf": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "Tote Bags"
+          }
+        },
+        "marquee_item_8mUxW6": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "Stickers"
+          }
+        },
+        "marquee_item_hYDzqR": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "Posters"
+          }
+        },
+        "marquee_item_6CNbUb": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "Caps"
+          }
+        }
+      },
+      "block_order": [
+        "marquee_item_a7MJke",
+        "marquee_item_apPx3P",
+        "marquee_item_3FQcf3",
+        "marquee_item_E9XFwD",
+        "marquee_item_mzhnEf",
+        "marquee_item_8mUxW6",
+        "marquee_item_hYDzqR",
+        "marquee_item_6CNbUb"
+      ],
+      "name": "POD — Marquee",
+      "settings": {
+        "bg_color": "#FFD600",
+        "text_color": "#0A0A0A",
+        "separator_color": "#0A0A0A",
+        "separator": "✦",
+        "font_size": 14,
+        "font_weight": 600,
+        "letter_spacing": 1,
+        "separator_size": 10,
+        "item_gap": 32,
+        "speed": 18,
+        "padding_y": 14,
+        "uppercase": false,
+        "pause_on_hover": true
+      }
+    },
     "pod_social_proof_product": {
       "type": "pod-social-proof",
       "blocks": {
@@ -822,91 +949,13 @@
         "padding_y": 32,
         "padding_x": 40
       }
-    },
-    "pod_marquee_KHWNq3": {
-      "type": "pod-marquee",
-      "blocks": {
-        "marquee_item_a7MJke": {
-          "type": "marquee_item",
-          "settings": {
-            "text": "T-Shirts"
-          }
-        },
-        "marquee_item_apPx3P": {
-          "type": "marquee_item",
-          "settings": {
-            "text": "Hoodies"
-          }
-        },
-        "marquee_item_3FQcf3": {
-          "type": "marquee_item",
-          "settings": {
-            "text": "Mugs"
-          }
-        },
-        "marquee_item_E9XFwD": {
-          "type": "marquee_item",
-          "settings": {
-            "text": "Phone Cases"
-          }
-        },
-        "marquee_item_mzhnEf": {
-          "type": "marquee_item",
-          "settings": {
-            "text": "Tote Bags"
-          }
-        },
-        "marquee_item_8mUxW6": {
-          "type": "marquee_item",
-          "settings": {
-            "text": "Stickers"
-          }
-        },
-        "marquee_item_hYDzqR": {
-          "type": "marquee_item",
-          "settings": {
-            "text": "Posters"
-          }
-        },
-        "marquee_item_6CNbUb": {
-          "type": "marquee_item",
-          "settings": {
-            "text": "Caps"
-          }
-        }
-      },
-      "block_order": [
-        "marquee_item_a7MJke",
-        "marquee_item_apPx3P",
-        "marquee_item_3FQcf3",
-        "marquee_item_E9XFwD",
-        "marquee_item_mzhnEf",
-        "marquee_item_8mUxW6",
-        "marquee_item_hYDzqR",
-        "marquee_item_6CNbUb"
-      ],
-      "name": "POD — Marquee",
-      "settings": {
-        "bg_color": "#FFD600",
-        "text_color": "#0A0A0A",
-        "separator_color": "#0A0A0A",
-        "separator": "✦",
-        "font_size": 14,
-        "font_weight": 600,
-        "letter_spacing": 1,
-        "separator_size": 10,
-        "item_gap": 32,
-        "speed": 18,
-        "padding_y": 14,
-        "uppercase": false,
-        "pause_on_hover": true
-      }
     }
   },
   "order": [
     "pod_nav_mm3WVJ",
     "main",
     "product_recommendations_qggXJq",
+    "pod_countdown_JHwpae",
     "pod_marquee_KHWNq3",
     "pod_social_proof_product",
     "pod_product_features_Ujjjg9",
