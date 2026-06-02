@@ -1,0 +1,181 @@
+<style>
+  .pod-pf-{{ section.id }} {
+    background: {{ section.settings.bg_color }};
+    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_x }}px {{ section.settings.padding_bottom }}px;
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .pod-pf-inner-{{ section.id }} {
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+  }
+  .pod-pf-header-{{ section.id }} {
+    text-align: {{ section.settings.text_align }};
+    margin-bottom: {{ section.settings.heading_margin }}px;
+  }
+  .pod-pf-label-{{ section.id }} {
+    font-size: {{ section.settings.label_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.label_color }};
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 12px;
+  }
+  .pod-pf-heading-{{ section.id }} {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(22px, 3.5vw, {{ section.settings.heading_size }}px);
+    font-weight: 800;
+    color: {{ section.settings.heading_color }};
+    margin: 0;
+    line-height: 1.15;
+  }
+  .pod-pf-grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.columns }}, 1fr);
+    gap: {{ section.settings.gap }}px;
+  }
+  .pod-pf-card-{{ section.id }} {
+    background: {{ section.settings.card_bg }};
+    border: 1px solid {{ section.settings.card_border }};
+    border-radius: {{ section.settings.card_radius }}px;
+    padding: {{ section.settings.card_padding_y }}px {{ section.settings.card_padding_x }}px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .pod-pf-card-{{ section.id }}:hover {
+    border-color: {{ section.settings.card_hover_border }};
+    transform: translateY(-3px);
+  }
+  .pod-pf-icon-{{ section.id }} {
+    font-size: {{ section.settings.icon_size }}px;
+    line-height: 1;
+    display: block;
+  }
+  .pod-pf-title-{{ section.id }} {
+    font-family: 'Syne', sans-serif;
+    font-size: {{ section.settings.title_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.title_color }};
+    margin: 0;
+    line-height: 1.2;
+  }
+  .pod-pf-text-{{ section.id }} {
+    font-size: {{ section.settings.text_size }}px;
+    color: {{ section.settings.text_color }};
+    line-height: 1.6;
+    margin: 0;
+  }
+  @media (max-width: 768px) {
+    .pod-pf-{{ section.id }} { padding-left: 16px; padding-right: 16px; }
+    .pod-pf-grid-{{ section.id }} { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .pod-pf-grid-{{ section.id }} { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="pod-pf-{{ section.id }}">
+  <div class="pod-pf-inner-{{ section.id }}">
+
+    {%- if section.settings.label != blank or section.settings.heading != blank -%}
+      <div class="pod-pf-header-{{ section.id }}">
+        {%- if section.settings.label != blank -%}
+          <span class="pod-pf-label-{{ section.id }}">{{ section.settings.label }}</span>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="pod-pf-heading-{{ section.id }}">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="pod-pf-grid-{{ section.id }}">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'feature' -%}
+          <div class="pod-pf-card-{{ section.id }}" {{ block.shopify_attributes }}>
+            {%- if block.settings.icon != blank -%}
+              <span class="pod-pf-icon-{{ section.id }}">{{ block.settings.icon }}</span>
+            {%- endif -%}
+            {%- if block.settings.title != blank -%}
+              <p class="pod-pf-title-{{ section.id }}">{{ block.settings.title }}</p>
+            {%- endif -%}
+            {%- if block.settings.text != blank -%}
+              <p class="pod-pf-text-{{ section.id }}">{{ block.settings.text }}</p>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "POD — Product Features",
+  "tag": "div",
+  "class": "pod-section",
+  "settings": [
+    { "type": "header", "content": "🎨 الألوان" },
+    { "type": "color", "id": "bg_color",         "label": "خلفية القسم",            "default": "#0A0A0A" },
+    { "type": "color", "id": "heading_color",     "label": "لون العنوان",             "default": "#FFFFFF" },
+    { "type": "color", "id": "label_color",       "label": "لون التسمية",             "default": "#FFD600" },
+    { "type": "color", "id": "card_bg",           "label": "خلفية الكارد",            "default": "#111111" },
+    { "type": "color", "id": "card_border",       "label": "حد الكارد",               "default": "#1A1A1A" },
+    { "type": "color", "id": "card_hover_border", "label": "حد الكارد عند التمرير",  "default": "#FFD600" },
+    { "type": "color", "id": "title_color",       "label": "لون عنوان الكارد",        "default": "#FFFFFF" },
+    { "type": "color", "id": "text_color",        "label": "لون نص الكارد",           "default": "#888888" },
+    { "type": "header", "content": "✏️ المحتوى" },
+    { "type": "text",   "id": "label",   "label": "التسمية الصغيرة",  "default": "WHY PRINT WITH US" },
+    { "type": "text",   "id": "heading", "label": "العنوان الرئيسي",  "default": "Quality you can feel." },
+    { "type": "select", "id": "text_align", "label": "محاذاة العنوان",
+      "options": [
+        { "value": "left",   "label": "يسار" },
+        { "value": "center", "label": "وسط" },
+        { "value": "right",  "label": "يمين" }
+      ], "default": "center" },
+    { "type": "header", "content": "📐 الحجم والمساحة" },
+    { "type": "range", "id": "columns",       "label": "عدد الأعمدة (ديسكتوب)",    "min": 2, "max": 4, "step": 1,  "default": 4 },
+    { "type": "range", "id": "max_width",     "label": "أقصى عرض (px)",            "min": 800,"max": 1400,"step": 40, "default": 1100 },
+    { "type": "range", "id": "gap",           "label": "مسافة بين الكاردات (px)",  "min": 8, "max": 40, "step": 4,  "default": 20 },
+    { "type": "range", "id": "card_radius",   "label": "تدوير زوايا الكارد (px)",  "min": 0, "max": 24, "step": 2,  "default": 14 },
+    { "type": "range", "id": "card_padding_y","label": "حشو الكارد عمودي (px)",    "min": 16,"max": 48, "step": 4,  "default": 28 },
+    { "type": "range", "id": "card_padding_x","label": "حشو الكارد أفقي (px)",     "min": 16,"max": 48, "step": 4,  "default": 24 },
+    { "type": "range", "id": "icon_size",     "label": "حجم الإيموجي (px)",         "min": 24,"max": 56, "step": 4,  "default": 36 },
+    { "type": "range", "id": "title_size",    "label": "حجم عنوان الكارد (px)",    "min": 14,"max": 22, "step": 1,  "default": 16 },
+    { "type": "range", "id": "text_size",     "label": "حجم نص الكارد (px)",       "min": 13,"max": 18, "step": 1,  "default": 14 },
+    { "type": "range", "id": "label_size",    "label": "حجم التسمية (px)",          "min": 10,"max": 16, "step": 1,  "default": 11 },
+    { "type": "range", "id": "heading_size",  "label": "حجم العنوان الأقصى (px)",  "min": 22,"max": 48, "step": 2,  "default": 34 },
+    { "type": "range", "id": "heading_margin","label": "مسافة أسفل العنوان (px)",  "min": 16,"max": 64, "step": 4,  "default": 40 },
+    { "type": "range", "id": "padding_top",   "label": "حشو علوي (px)",             "min": 40,"max": 160,"step": 8,  "default": 64 },
+    { "type": "range", "id": "padding_bottom","label": "حشو سفلي (px)",             "min": 40,"max": 160,"step": 8,  "default": 64 },
+    { "type": "range", "id": "padding_x",     "label": "حشو أفقي (px)",             "min": 16,"max": 80, "step": 4,  "default": 40 }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "ميزة",
+      "settings": [
+        { "type": "text",     "id": "icon",  "label": "إيموجي",      "default": "🖨️" },
+        { "type": "text",     "id": "title", "label": "العنوان",      "default": "Premium Print Quality" },
+        { "type": "textarea", "id": "text",  "label": "الوصف",        "default": "DTG printing with vibrant, long-lasting colors that won't fade or crack." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "POD — Product Features",
+      "blocks": [
+        { "type": "feature", "settings": { "icon": "🖨️", "title": "Premium Print Quality",    "text": "DTG printing with vibrant, long-lasting colors that won't fade or crack." } },
+        { "type": "feature", "settings": { "icon": "👕", "title": "Premium Fabric",            "text": "100% combed cotton, pre-shrunk and super soft to the touch." } },
+        { "type": "feature", "settings": { "icon": "⚡", "title": "Fast Dispatch",             "text": "Your order is printed and dispatched within 48 hours." } },
+        { "type": "feature", "settings": { "icon": "🌍", "title": "Ships Worldwide",           "text": "We ship to 150+ countries with full tracking on every order." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

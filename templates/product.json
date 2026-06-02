@@ -1,12 +1,4 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */{
+{
   "sections": {
     "main": {
       "type": "product-information",
@@ -51,8 +43,8 @@
             "details_position": "flex-start",
             "gap": 28,
             "sticky_details_desktop": true,
-            "inherit_color_scheme": true,
-            "color_scheme": "scheme-1",
+            "inherit_color_scheme": false,
+            "color_scheme": "scheme-5",
             "background_media": "none",
             "video_position": "cover",
             "background_image_position": "cover",
@@ -259,7 +251,7 @@
         "equal_columns": false,
         "limit_details_width": false,
         "gap": 48,
-        "color_scheme": "",
+        "color_scheme": "scheme-5",
         "padding-block-start": 0,
         "padding-block-end": 0
       }
@@ -400,14 +392,156 @@
         "icons_shape": "none",
         "section_width": "page-width",
         "gap": 28,
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-5",
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "pod_product_features": {
+      "type": "pod-product-features",
+      "settings": {},
+      "blocks": {},
+      "block_order": []
+    },
+    "pod_faq_product": {
+      "type": "pod-faq",
+      "settings": {},
+      "blocks": {
+        "faq_q1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What printing method do you use?",
+            "answer": "We use Direct-to-Garment (DTG) printing for the most vibrant, detailed results on fabric.",
+            "open_by_default": true
+          }
+        },
+        "faq_q2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I care for my printed item?",
+            "answer": "Wash inside out on a cold gentle cycle. Do not iron directly on the print."
+          }
+        },
+        "faq_q3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I return or exchange?",
+            "answer": "Yes — returns within 14 days for print quality issues. Custom products are non-refundable unless defective."
+          }
+        },
+        "faq_q4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "Most orders dispatch within 48 hours and arrive in 5-7 business days."
+          }
+        }
+      },
+      "block_order": [
+        "faq_q1",
+        "faq_q2",
+        "faq_q3",
+        "faq_q4"
+      ]
+    },
+    "pod_testimonials_product": {
+      "type": "pod-testimonials",
+      "settings": {},
+      "blocks": {
+        "t1": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "The quality blew me away! My hoodie arrived in 3 days and the print was perfect.",
+            "avatar_emoji": "👤",
+            "name": "Ahmed K.",
+            "role": "Verified Buyer"
+          }
+        },
+        "t2": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "Ordered 4 times already. Best POD service I have used.",
+            "avatar_emoji": "👤",
+            "name": "Sara M.",
+            "role": "Repeat Customer"
+          }
+        },
+        "t3": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 4,
+            "text": "Great experience from design to delivery. Exactly like the mockup.",
+            "avatar_emoji": "👤",
+            "name": "Omar T.",
+            "role": "Verified Buyer"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3"
+      ]
+    },
+    "pod_social_proof_product": {
+      "type": "pod-social-proof",
+      "settings": {},
+      "blocks": {
+        "s1": {
+          "type": "stat",
+          "settings": {
+            "icon": "📦",
+            "value": "50k+",
+            "label": "Orders Fulfilled"
+          }
+        },
+        "s2": {
+          "type": "stat",
+          "settings": {
+            "icon": "⭐",
+            "value": "4.9/5",
+            "label": "Average Rating"
+          }
+        },
+        "s3": {
+          "type": "stat",
+          "settings": {
+            "icon": "🌍",
+            "value": "150+",
+            "label": "Countries Shipped"
+          }
+        },
+        "s4": {
+          "type": "stat",
+          "settings": {
+            "icon": "⚡",
+            "value": "48h",
+            "label": "Avg Dispatch Time"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ]
+    },
+    "pod_newsletter_product": {
+      "type": "pod-newsletter",
+      "settings": {},
+      "blocks": {}
     }
   },
   "order": [
     "main",
-    "product_recommendations_qggXJq"
+    "pod_product_features",
+    "product_recommendations_qggXJq",
+    "pod_social_proof_product",
+    "pod_testimonials_product",
+    "pod_faq_product",
+    "pod_newsletter_product"
   ]
 }
