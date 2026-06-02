@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -62,7 +71,6 @@
               "type": "group",
               "name": "Header",
               "settings": {
-                "open_in_new_tab": false,
                 "content_direction": "column",
                 "vertical_on_mobile": true,
                 "horizontal_alignment": "flex-start",
@@ -90,6 +98,7 @@
                 "overlay_color": "#00000026",
                 "overlay_style": "solid",
                 "gradient_direction": "to top",
+                "open_in_new_tab": false,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -399,13 +408,10 @@
     },
     "pod_product_features": {
       "type": "pod-product-features",
-      "settings": {},
-      "blocks": {},
-      "block_order": []
+      "settings": {}
     },
     "pod_faq_product": {
       "type": "pod-faq",
-      "settings": {},
       "blocks": {
         "faq_q1": {
           "type": "faq_item",
@@ -442,11 +448,11 @@
         "faq_q2",
         "faq_q3",
         "faq_q4"
-      ]
+      ],
+      "settings": {}
     },
     "pod_testimonials_product": {
       "type": "pod-testimonials",
-      "settings": {},
       "blocks": {
         "t1": {
           "type": "testimonial",
@@ -483,11 +489,11 @@
         "t1",
         "t2",
         "t3"
-      ]
+      ],
+      "settings": {}
     },
     "pod_social_proof_product": {
       "type": "pod-social-proof",
-      "settings": {},
       "blocks": {
         "s1": {
           "type": "stat",
@@ -527,12 +533,12 @@
         "s2",
         "s3",
         "s4"
-      ]
+      ],
+      "settings": {}
     },
     "pod_newsletter_product": {
       "type": "pod-newsletter",
-      "settings": {},
-      "blocks": {}
+      "settings": {}
     }
   },
   "order": [
