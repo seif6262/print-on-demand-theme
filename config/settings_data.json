@@ -358,7 +358,8 @@
           "selected_variant_hover_border_color": "#1a1a1a"
         }
       }
-    }
+    },
+    "popover_color_scheme": "scheme-5"
   },
   "presets": {
     "Horizon": {
