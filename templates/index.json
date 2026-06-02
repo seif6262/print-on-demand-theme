@@ -6,285 +6,620 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
-    "hero_jVaWmY": {
-      "type": "hero",
+    "pod_nav_Q9WXyY": {
+      "type": "pod-nav",
       "blocks": {
-        "text_YLPk4p": {
-          "type": "text",
-          "name": "t:names.heading",
+        "nav_link_q6DqAf": {
+          "type": "nav_link",
           "settings": {
-            "text": "<p>Browse our latest products</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground-heading)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "label": "Products",
+            "url": ""
+          }
         },
-        "button_H9gpTf": {
-          "type": "button",
-          "name": "t:names.button",
+        "nav_link_UVCVWY": {
+          "type": "nav_link",
           "settings": {
-            "label": "Shop all",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button-secondary",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
+            "label": "Design Tool",
+            "url": ""
+          }
+        },
+        "nav_link_B8nmVb": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Pricing",
+            "url": ""
+          }
+        },
+        "nav_link_84EN9m": {
+          "type": "nav_link",
+          "settings": {
+            "label": "About",
+            "url": ""
+          }
         }
       },
       "block_order": [
-        "text_YLPk4p",
-        "button_H9gpTf"
+        "nav_link_q6DqAf",
+        "nav_link_UVCVWY",
+        "nav_link_B8nmVb",
+        "nav_link_84EN9m"
       ],
-      "name": "t:names.hero",
+      "name": "POD — Navigation",
       "settings": {
-        "media_type_1": "image",
-        "media_type_2": "image",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": false,
-        "media_type_1_mobile": "image",
-        "media_type_2_mobile": "image",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "space-between",
-        "vertical_alignment": "flex-end",
-        "align_baseline": true,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 24,
-        "section_width": "page-width",
-        "section_height": "medium",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-6",
-        "toggle_overlay": true,
-        "overlay_color": "#12121266",
-        "overlay_style": "solid",
-        "gradient_direction": "to bottom",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 100,
-        "padding-block-end": 72
+        "bg_color": "#0A0A0A",
+        "border_color": "#1A1A1A",
+        "logo_color": "#FFFFFF",
+        "logo_accent_color": "#FFD600",
+        "link_color": "#AAAAAA",
+        "link_hover_color": "#FFD600",
+        "cta_bg": "#FFD600",
+        "cta_color": "#0A0A0A",
+        "mobile_bg": "#0A0A0A",
+        "logo_word1": "YOUR",
+        "logo_word2": "BRAND",
+        "logo_url": "",
+        "cta_text": "Start Designing",
+        "cta_url": "",
+        "sticky": true,
+        "logo_size": 20,
+        "link_size": 14,
+        "mobile_link_size": 26,
+        "links_gap": 32,
+        "padding_x": 40,
+        "padding_y": 16,
+        "cta_padding_x": 24,
+        "cta_padding_y": 10
       }
     },
-    "product_list_fa6P9H": {
-      "type": "product-list",
+    "pod_hero_yjXDpX": {
+      "type": "pod-hero",
+      "name": "POD — Hero",
+      "settings": {
+        "bg_color": "#0A0A0A",
+        "heading_color": "#FFFFFF",
+        "accent_color": "#FFD600",
+        "subtext_color": "#888888",
+        "show_gradient": true,
+        "gradient_color": "#FFD600",
+        "badge_text": "Print on Demand — Ships in 48h",
+        "badge_bg": "#1A1500",
+        "badge_border": "#3A2F00",
+        "badge_color": "#FFD600",
+        "badge_dot_color": "#FFD600",
+        "badge_size": 13,
+        "badge_margin_bottom": 28,
+        "hero_line1": "Your Design.",
+        "hero_highlight": "Printed",
+        "hero_line2": "Your Way.",
+        "heading_min": 42,
+        "heading_max": 86,
+        "heading_vw": 7,
+        "heading_tracking": -2,
+        "heading_margin_bottom": 24,
+        "subtext": "Upload your art, pick your product, and we handle the rest.",
+        "subtext_size": 18,
+        "subtext_max_width": 480,
+        "subtext_margin_bottom": 40,
+        "btn_primary_text": "Start Designing Free",
+        "btn_primary_url": "",
+        "btn_primary_bg": "#FFD600",
+        "btn_primary_hover": "#FFE033",
+        "btn_primary_color": "#0A0A0A",
+        "btn_secondary_text": "Browse Products →",
+        "btn_secondary_url": "",
+        "btn_secondary_color": "#FFFFFF",
+        "btn_secondary_border": "#444444",
+        "btn_size": 15,
+        "btn_padding_x": 32,
+        "btn_padding_y": 16,
+        "btn_gap": 16,
+        "min_height": 85,
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "padding_x": 24
+      }
+    },
+    "pod_marquee_h4V3kM": {
+      "type": "pod-marquee",
       "blocks": {
-        "static-header": {
-          "type": "_product-list-content",
-          "name": "t:names.header",
-          "static": true,
+        "marquee_item_8HxEmf": {
+          "type": "marquee_item",
           "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": false,
-            "horizontal_alignment": "space-between",
-            "vertical_alignment": "flex-end",
-            "align_baseline": true,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_list_text_YFtzcL": {
-              "type": "_product-list-text",
-              "name": "t:names.collection_title",
-              "settings": {
-                "text": "<h3>{{ closest.collection.title }}</h3>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h4",
-                "font": "var(--font-body--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_list_button_MWeP9V": {
-              "type": "_product-list-button",
-              "name": "t:names.product_list_button",
-              "settings": {
-                "label": "View all",
-                "open_in_new_tab": false,
-                "style_class": "link",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_list_text_YFtzcL",
-            "product_list_button_MWeP9V"
-          ]
+            "text": "T-Shirts"
+          }
         },
-        "static-product-card": {
-          "type": "_product-card",
-          "name": "t:names.product_card",
-          "static": true,
+        "marquee_item_FQR9QL": {
+          "type": "marquee_item",
           "settings": {
-            "product_card_gap": 4,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_card_gallery_677WP3": {
-              "type": "_product-card-gallery",
-              "name": "t:names.product_card_media",
-              "settings": {
-                "image_ratio": "adapt",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_title_YXxMTj": {
-              "type": "product-title",
-              "name": "t:names.product_title",
-              "settings": {
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 4,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "price_JQzVV4": {
-              "type": "price",
-              "name": "t:names.product_price",
-              "settings": {
-                "show_sale_price_first": true,
-                "show_installments": false,
-                "show_tax_info": false,
-                "type_preset": "h6",
-                "width": "100%",
-                "alignment": "left",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "color": "var(--color-foreground)",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_card_gallery_677WP3",
-            "product_title_YXxMTj",
-            "price_JQzVV4"
-          ]
+            "text": "Hoodies"
+          }
+        },
+        "marquee_item_nGcETg": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "Mugs"
+          }
+        },
+        "marquee_item_F8Najc": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "Phone Cases"
+          }
+        },
+        "marquee_item_xEKr7Q": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "Tote Bags"
+          }
+        },
+        "marquee_item_HNk6JM": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "Stickers"
+          }
+        },
+        "marquee_item_Un6QVD": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "Posters"
+          }
+        },
+        "marquee_item_LYyeDn": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "Caps"
+          }
         }
       },
-      "name": "Featured collection",
+      "block_order": [
+        "marquee_item_8HxEmf",
+        "marquee_item_FQR9QL",
+        "marquee_item_nGcETg",
+        "marquee_item_F8Najc",
+        "marquee_item_xEKr7Q",
+        "marquee_item_HNk6JM",
+        "marquee_item_Un6QVD",
+        "marquee_item_LYyeDn"
+      ],
+      "name": "POD — Marquee",
       "settings": {
-        "collection": "all",
-        "layout_type": "grid",
-        "carousel_on_mobile": false,
-        "max_products": 8,
+        "bg_color": "#FFD600",
+        "text_color": "#0A0A0A",
+        "separator_color": "#0A0A0A",
+        "separator": "✦",
+        "font_size": 14,
+        "font_weight": 600,
+        "letter_spacing": 1,
+        "separator_size": 10,
+        "item_gap": 32,
+        "speed": 18,
+        "padding_y": 14,
+        "uppercase": false,
+        "pause_on_hover": true
+      }
+    },
+    "pod_how_it_works_CxTG8U": {
+      "type": "pod-how-it-works",
+      "blocks": {
+        "step_JkPxmG": {
+          "type": "step",
+          "settings": {
+            "number": "01",
+            "title": "Choose a Product",
+            "description": "Browse our catalog of 50+ customizable products and pick your favourite."
+          }
+        },
+        "step_4TFdY9": {
+          "type": "step",
+          "settings": {
+            "number": "02",
+            "title": "Upload Your Design",
+            "description": "Upload your artwork or use our online design tool to create something amazing."
+          }
+        },
+        "step_UUXGMd": {
+          "type": "step",
+          "settings": {
+            "number": "03",
+            "title": "We Print & Pack",
+            "description": "Your order is printed with premium quality inks and carefully packaged."
+          }
+        },
+        "step_NwEDgL": {
+          "type": "step",
+          "settings": {
+            "number": "04",
+            "title": "Delivered to You",
+            "description": "Fast shipping straight to your door. Track every step of the journey."
+          }
+        }
+      },
+      "block_order": [
+        "step_JkPxmG",
+        "step_4TFdY9",
+        "step_UUXGMd",
+        "step_NwEDgL"
+      ],
+      "name": "POD — How It Works",
+      "settings": {
+        "bg_color": "#0D0D0D",
+        "label_color": "#FFD600",
+        "heading_color": "#FFFFFF",
+        "number_color": "#FFD600",
+        "title_color": "#FFFFFF",
+        "desc_color": "#888888",
+        "card_bg": "#111111",
+        "card_border": "#1A1A1A",
+        "card_hover_bg": "#141200",
+        "card_hover_border": "#3A2F00",
+        "label": "HOW IT WORKS",
+        "heading": "From idea to doorstep in 4 easy steps",
+        "text_align": "center",
         "columns": 4,
-        "mobile_columns": "2",
-        "mobile_card_size": "60cqw",
-        "columns_gap": 8,
-        "rows_gap": 24,
-        "icons_style": "arrow",
-        "icons_shape": "none",
-        "section_width": "page-width",
-        "horizontal_alignment": "flex-start",
-        "gap": 28,
-        "color_scheme": "scheme-1",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "max_width": 1200,
+        "label_size": 12,
+        "label_margin": 12,
+        "heading_size": 38,
+        "heading_margin": 16,
+        "grid_margin_top": 48,
+        "gap": 24,
+        "card_radius": 16,
+        "card_padding": 32,
+        "number_size": 56,
+        "number_margin": 12,
+        "step_title_size": 18,
+        "title_margin": 8,
+        "desc_size": 14,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_x": 40
+      }
+    },
+    "pod_products_Jej6Db": {
+      "type": "pod-products",
+      "blocks": {
+        "filter_3RVa3T": {
+          "type": "filter",
+          "settings": {
+            "label": "Apparel",
+            "category": "apparel"
+          }
+        },
+        "filter_dTR7GD": {
+          "type": "filter",
+          "settings": {
+            "label": "Accessories",
+            "category": "accessories"
+          }
+        },
+        "filter_66apbp": {
+          "type": "filter",
+          "settings": {
+            "label": "Home & Living",
+            "category": "home"
+          }
+        },
+        "product_bTNCaR": {
+          "type": "product",
+          "settings": {
+            "name": "Premium T-Shirt",
+            "emoji": "👕",
+            "category": "apparel",
+            "price": "$14.99",
+            "badge": "Best Seller",
+            "url": ""
+          }
+        },
+        "product_6MEgKC": {
+          "type": "product",
+          "settings": {
+            "name": "Unisex Hoodie",
+            "emoji": "🧥",
+            "category": "apparel",
+            "price": "$29.99",
+            "badge": "Best Seller",
+            "url": ""
+          }
+        },
+        "product_Nxm6Qe": {
+          "type": "product",
+          "settings": {
+            "name": "Snapback Cap",
+            "emoji": "🧢",
+            "category": "accessories",
+            "price": "$18.99",
+            "badge": "New",
+            "url": ""
+          }
+        },
+        "product_XiMUtP": {
+          "type": "product",
+          "settings": {
+            "name": "Phone Case",
+            "emoji": "📱",
+            "category": "accessories",
+            "price": "$12.99",
+            "badge": "Best Seller",
+            "url": ""
+          }
+        },
+        "product_6nfy6X": {
+          "type": "product",
+          "settings": {
+            "name": "Ceramic Mug",
+            "emoji": "☕",
+            "category": "home",
+            "price": "$9.99",
+            "badge": "Best Seller",
+            "url": ""
+          }
+        },
+        "product_4TRVUN": {
+          "type": "product",
+          "settings": {
+            "name": "Wall Poster",
+            "emoji": "🖼️",
+            "category": "home",
+            "price": "$11.99",
+            "badge": "Popular",
+            "url": ""
+          }
+        },
+        "product_7UQQji": {
+          "type": "product",
+          "settings": {
+            "name": "Custom Socks",
+            "emoji": "🧦",
+            "category": "apparel",
+            "price": "$8.99",
+            "badge": "Best Seller",
+            "url": ""
+          }
+        },
+        "product_UwfX6N": {
+          "type": "product",
+          "settings": {
+            "name": "Tote Bag",
+            "emoji": "👜",
+            "category": "accessories",
+            "price": "$13.99",
+            "badge": "Best Seller",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "filter_3RVa3T",
+        "filter_dTR7GD",
+        "filter_66apbp",
+        "product_bTNCaR",
+        "product_6MEgKC",
+        "product_Nxm6Qe",
+        "product_XiMUtP",
+        "product_6nfy6X",
+        "product_4TRVUN",
+        "product_7UQQji",
+        "product_UwfX6N"
+      ],
+      "name": "POD — Products Grid",
+      "settings": {
+        "bg_color": "#0A0A0A",
+        "label_color": "#FFD600",
+        "heading_color": "#FFFFFF",
+        "card_bg": "#111111",
+        "card_border": "#1A1A1A",
+        "card_hover_bg": "#141200",
+        "card_hover_border": "#3A2F00",
+        "image_bg": "#1A1A1A",
+        "name_color": "#FFFFFF",
+        "price_color": "#FFD600",
+        "badge_bg": "#FFD600",
+        "badge_color": "#0A0A0A",
+        "filter_border": "#333333",
+        "filter_text": "#AAAAAA",
+        "filter_active_bg": "#FFD600",
+        "filter_active_text": "#0A0A0A",
+        "prod_btn_bg": "#1A1500",
+        "prod_btn_color": "#FFD600",
+        "prod_btn_hover_bg": "#FFD600",
+        "prod_btn_hover_color": "#0A0A0A",
+        "label": "OUR PRODUCTS",
+        "heading": "Print on anything.",
+        "filter_all_label": "All",
+        "card_btn_label": "Customize",
+        "text_align": "center",
+        "columns": 4,
+        "max_width": 1200,
+        "gap": 20,
+        "card_radius": 16,
+        "emoji_size": 64,
+        "info_padding": 20,
+        "info_gap": 8,
+        "label_size": 12,
+        "heading_size": 38,
+        "heading_margin": 32,
+        "filter_margin": 32,
+        "name_size": 16,
+        "price_size": 16,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_x": 40
+      }
+    },
+    "pod_why_us_kyjAJq": {
+      "type": "pod-why-us",
+      "blocks": {
+        "stat_WT7EPA": {
+          "type": "stat",
+          "settings": {
+            "value": "50+",
+            "label": "Products available",
+            "is_accent": true
+          }
+        },
+        "stat_6Kmnzt": {
+          "type": "stat",
+          "settings": {
+            "value": "48h",
+            "label": "Avg dispatch time",
+            "is_accent": false
+          }
+        },
+        "stat_rjVp3D": {
+          "type": "stat",
+          "settings": {
+            "value": "10k+",
+            "label": "Happy customers",
+            "is_accent": false
+          }
+        },
+        "stat_fLWFTh": {
+          "type": "stat",
+          "settings": {
+            "value": "100%",
+            "label": "Satisfaction guarantee",
+            "is_accent": false
+          }
+        },
+        "feature_KtXQ8G": {
+          "type": "feature",
+          "settings": {
+            "icon": "🎨",
+            "title": "No Minimums",
+            "description": "Order just one item — no bulk requirements, ever."
+          }
+        },
+        "feature_j4GJFW": {
+          "type": "feature",
+          "settings": {
+            "icon": "⚡",
+            "title": "Lightning Fast",
+            "description": "Most orders dispatched within 48 hours of placing."
+          }
+        },
+        "feature_feG4Bj": {
+          "type": "feature",
+          "settings": {
+            "icon": "🌍",
+            "title": "Ships Worldwide",
+            "description": "We deliver to 150+ countries with reliable tracking."
+          }
+        }
+      },
+      "block_order": [
+        "stat_WT7EPA",
+        "stat_6Kmnzt",
+        "stat_rjVp3D",
+        "stat_fLWFTh",
+        "feature_KtXQ8G",
+        "feature_j4GJFW",
+        "feature_feG4Bj"
+      ],
+      "name": "POD — Why Us",
+      "settings": {
+        "bg_color": "#0D0D0D",
+        "label_color": "#FFD600",
+        "heading_color": "#FFFFFF",
+        "subtext_color": "#888888",
+        "accent_color": "#FFD600",
+        "stat_bg": "#111111",
+        "stat_border": "#1A1A1A",
+        "stat_accent_bg": "#141200",
+        "stat_accent_border": "#3A2F00",
+        "stat_label_color": "#888888",
+        "icon_bg": "#1A1500",
+        "feature_title_color": "#FFFFFF",
+        "feature_desc_color": "#888888",
+        "label": "WHY CHOOSE US",
+        "heading": "Built for creators like you.",
+        "subtext": "Everything you need to bring your designs to life, without the hassle.",
+        "stats_position": "left",
+        "max_width": 1200,
+        "col_gap": 64,
+        "label_size": 12,
+        "heading_size": 38,
+        "heading_margin": 16,
+        "subtext_size": 16,
+        "stats_gap": 16,
+        "stat_radius": 16,
+        "stat_padding": 28,
+        "stat_value_size": 44,
+        "stat_label_size": 14,
+        "features_margin_top": 32,
+        "feature_gap": 24,
+        "feature_inner_gap": 16,
+        "icon_size": 48,
+        "icon_radius": 12,
+        "icon_font_size": 22,
+        "feature_title_size": 17,
+        "feature_desc_size": 14,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_x": 40
+      }
+    },
+    "pod_footer_PbTK4q": {
+      "type": "pod-footer",
+      "blocks": {
+        "link_VUyUJf": {
+          "type": "link",
+          "settings": {
+            "label": "Privacy Policy",
+            "url": ""
+          }
+        },
+        "link_z6Bmkz": {
+          "type": "link",
+          "settings": {
+            "label": "Terms of Service",
+            "url": ""
+          }
+        },
+        "link_wDWG6D": {
+          "type": "link",
+          "settings": {
+            "label": "Contact Us",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "link_VUyUJf",
+        "link_z6Bmkz",
+        "link_wDWG6D"
+      ],
+      "name": "POD — Footer",
+      "settings": {
+        "bg_color": "#0A0A0A",
+        "border_color": "#1A1A1A",
+        "logo_color": "#FFFFFF",
+        "logo_accent": "#FFD600",
+        "link_color": "#666666",
+        "link_hover_color": "#FFD600",
+        "copy_color": "#444444",
+        "logo_word1": "YOUR",
+        "logo_word2": "BRAND",
+        "copyright": "© 2024 Your Brand. All rights reserved.",
+        "max_width": 1200,
+        "logo_size": 18,
+        "link_size": 13,
+        "copy_size": 13,
+        "links_gap": 24,
+        "padding_y": 32,
+        "padding_x": 40
       }
     }
   },
   "order": [
-    "hero_jVaWmY",
-    "product_list_fa6P9H"
+    "pod_nav_Q9WXyY",
+    "pod_hero_yjXDpX",
+    "pod_marquee_h4V3kM",
+    "pod_how_it_works_CxTG8U",
+    "pod_products_Jej6Db",
+    "pod_why_us_kyjAJq",
+    "pod_footer_PbTK4q"
   ]
 }
