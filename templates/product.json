@@ -550,6 +550,78 @@
         "padding_x": 40
       }
     },
+    "pod_product_features_Ujjjg9": {
+      "type": "pod-product-features",
+      "blocks": {
+        "feature_bjLjqR": {
+          "type": "feature",
+          "settings": {
+            "icon": "🖨️",
+            "title": "Premium Print Quality",
+            "text": "DTG printing with vibrant, long-lasting colors that won't fade or crack."
+          }
+        },
+        "feature_LKTEnY": {
+          "type": "feature",
+          "settings": {
+            "icon": "👕",
+            "title": "Premium Fabric",
+            "text": "100% combed cotton, pre-shrunk and super soft to the touch."
+          }
+        },
+        "feature_T3bRJp": {
+          "type": "feature",
+          "settings": {
+            "icon": "⚡",
+            "title": "Fast Dispatch",
+            "text": "Your order is printed and dispatched within 48 hours."
+          }
+        },
+        "feature_zKYFNB": {
+          "type": "feature",
+          "settings": {
+            "icon": "🌍",
+            "title": "Ships Worldwide",
+            "text": "We ship to 150+ countries with full tracking on every order."
+          }
+        }
+      },
+      "block_order": [
+        "feature_bjLjqR",
+        "feature_LKTEnY",
+        "feature_T3bRJp",
+        "feature_zKYFNB"
+      ],
+      "name": "POD — Product Features",
+      "settings": {
+        "bg_color": "#0A0A0A",
+        "heading_color": "#FFFFFF",
+        "label_color": "#FFD600",
+        "card_bg": "#111111",
+        "card_border": "#1A1A1A",
+        "card_hover_border": "#FFD600",
+        "title_color": "#FFFFFF",
+        "text_color": "#888888",
+        "label": "WHY PRINT WITH US",
+        "heading": "Quality you can feel.",
+        "text_align": "center",
+        "columns": 4,
+        "max_width": 1080,
+        "gap": 20,
+        "card_radius": 14,
+        "card_padding_y": 28,
+        "card_padding_x": 24,
+        "icon_size": 36,
+        "title_size": 16,
+        "text_size": 14,
+        "label_size": 11,
+        "heading_size": 34,
+        "heading_margin": 40,
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "padding_x": 40
+      }
+    },
     "pod_testimonials_product": {
       "type": "pod-testimonials",
       "blocks": {
@@ -700,78 +772,6 @@
         "padding_x": 40
       }
     },
-    "pod_product_features_Ujjjg9": {
-      "type": "pod-product-features",
-      "blocks": {
-        "feature_bjLjqR": {
-          "type": "feature",
-          "settings": {
-            "icon": "🖨️",
-            "title": "Premium Print Quality",
-            "text": "DTG printing with vibrant, long-lasting colors that won't fade or crack."
-          }
-        },
-        "feature_LKTEnY": {
-          "type": "feature",
-          "settings": {
-            "icon": "👕",
-            "title": "Premium Fabric",
-            "text": "100% combed cotton, pre-shrunk and super soft to the touch."
-          }
-        },
-        "feature_T3bRJp": {
-          "type": "feature",
-          "settings": {
-            "icon": "⚡",
-            "title": "Fast Dispatch",
-            "text": "Your order is printed and dispatched within 48 hours."
-          }
-        },
-        "feature_zKYFNB": {
-          "type": "feature",
-          "settings": {
-            "icon": "🌍",
-            "title": "Ships Worldwide",
-            "text": "We ship to 150+ countries with full tracking on every order."
-          }
-        }
-      },
-      "block_order": [
-        "feature_bjLjqR",
-        "feature_LKTEnY",
-        "feature_T3bRJp",
-        "feature_zKYFNB"
-      ],
-      "name": "POD — Product Features",
-      "settings": {
-        "bg_color": "#0A0A0A",
-        "heading_color": "#FFFFFF",
-        "label_color": "#FFD600",
-        "card_bg": "#111111",
-        "card_border": "#1A1A1A",
-        "card_hover_border": "#FFD600",
-        "title_color": "#FFFFFF",
-        "text_color": "#888888",
-        "label": "WHY PRINT WITH US",
-        "heading": "Quality you can feel.",
-        "text_align": "center",
-        "columns": 4,
-        "max_width": 1080,
-        "gap": 20,
-        "card_radius": 14,
-        "card_padding_y": 28,
-        "card_padding_x": 24,
-        "icon_size": 36,
-        "title_size": 16,
-        "text_size": 14,
-        "label_size": 11,
-        "heading_size": 34,
-        "heading_margin": 40,
-        "padding_top": 64,
-        "padding_bottom": 64,
-        "padding_x": 40
-      }
-    },
     "pod_footer_iGxMhT": {
       "type": "pod-footer",
       "blocks": {
@@ -822,12 +822,92 @@
         "padding_y": 32,
         "padding_x": 40
       }
+    },
+    "pod_marquee_KHWNq3": {
+      "type": "pod-marquee",
+      "blocks": {
+        "marquee_item_a7MJke": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "T-Shirts"
+          }
+        },
+        "marquee_item_apPx3P": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "Hoodies"
+          }
+        },
+        "marquee_item_3FQcf3": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "Mugs"
+          }
+        },
+        "marquee_item_E9XFwD": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "Phone Cases"
+          }
+        },
+        "marquee_item_mzhnEf": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "Tote Bags"
+          }
+        },
+        "marquee_item_8mUxW6": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "Stickers"
+          }
+        },
+        "marquee_item_hYDzqR": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "Posters"
+          }
+        },
+        "marquee_item_6CNbUb": {
+          "type": "marquee_item",
+          "settings": {
+            "text": "Caps"
+          }
+        }
+      },
+      "block_order": [
+        "marquee_item_a7MJke",
+        "marquee_item_apPx3P",
+        "marquee_item_3FQcf3",
+        "marquee_item_E9XFwD",
+        "marquee_item_mzhnEf",
+        "marquee_item_8mUxW6",
+        "marquee_item_hYDzqR",
+        "marquee_item_6CNbUb"
+      ],
+      "name": "POD — Marquee",
+      "settings": {
+        "bg_color": "#FFD600",
+        "text_color": "#0A0A0A",
+        "separator_color": "#0A0A0A",
+        "separator": "✦",
+        "font_size": 14,
+        "font_weight": 600,
+        "letter_spacing": 1,
+        "separator_size": 10,
+        "item_gap": 32,
+        "speed": 18,
+        "padding_y": 14,
+        "uppercase": false,
+        "pause_on_hover": true
+      }
     }
   },
   "order": [
     "pod_nav_mm3WVJ",
     "main",
     "product_recommendations_qggXJq",
+    "pod_marquee_KHWNq3",
     "pod_social_proof_product",
     "pod_product_features_Ujjjg9",
     "pod_testimonials_product",
