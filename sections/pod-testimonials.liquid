@@ -1,0 +1,244 @@
+<style>
+  .pod-testimonials-{{ section.id }} {
+    background: {{ section.settings.bg_color }};
+    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_x }}px {{ section.settings.padding_bottom }}px;
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .pod-testimonials-inner-{{ section.id }} {
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+  }
+  .pod-testimonials-label-{{ section.id }} {
+    font-size: {{ section.settings.label_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.label_color }};
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 12px;
+    text-align: {{ section.settings.text_align }};
+  }
+  .pod-testimonials-heading-{{ section.id }} {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(24px, 4vw, {{ section.settings.heading_size }}px);
+    font-weight: 800;
+    color: {{ section.settings.heading_color }};
+    margin: 0 0 {{ section.settings.heading_margin }}px;
+    line-height: 1.1;
+    text-align: {{ section.settings.text_align }};
+  }
+  .pod-testimonials-grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.columns }}, 1fr);
+    gap: {{ section.settings.gap }}px;
+  }
+  .pod-testimonial-card-{{ section.id }} {
+    background: {{ section.settings.card_bg }};
+    border: 1px solid {{ section.settings.card_border }};
+    border-radius: {{ section.settings.card_radius }}px;
+    padding: {{ section.settings.card_padding }}px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .pod-testimonial-card-{{ section.id }}:hover {
+    border-color: {{ section.settings.card_hover_border }};
+    transform: translateY(-3px);
+  }
+  .pod-testimonial-stars-{{ section.id }} {
+    display: flex;
+    gap: 3px;
+    font-size: {{ section.settings.star_size }}px;
+  }
+  .pod-testimonial-star-{{ section.id }} {
+    color: {{ section.settings.star_color }};
+  }
+  .pod-testimonial-star-{{ section.id }}.empty {
+    color: {{ section.settings.star_empty_color }};
+  }
+  .pod-testimonial-text-{{ section.id }} {
+    font-size: {{ section.settings.text_size }}px;
+    color: {{ section.settings.text_color }};
+    line-height: 1.65;
+    margin: 0;
+    flex: 1;
+    font-style: italic;
+  }
+  .pod-testimonial-author-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid {{ section.settings.card_border }};
+    padding-top: 16px;
+    margin-top: auto;
+  }
+  .pod-testimonial-avatar-{{ section.id }} {
+    width: {{ section.settings.avatar_size }}px;
+    height: {{ section.settings.avatar_size }}px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: {{ section.settings.avatar_bg }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+  .pod-testimonial-avatar-{{ section.id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .pod-testimonial-name-{{ section.id }} {
+    font-family: 'Syne', sans-serif;
+    font-size: {{ section.settings.name_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.name_color }};
+    margin: 0 0 2px;
+  }
+  .pod-testimonial-role-{{ section.id }} {
+    font-size: 12px;
+    color: {{ section.settings.role_color }};
+    margin: 0;
+  }
+  @media (max-width: 900px) {
+    .pod-testimonials-grid-{{ section.id }} { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .pod-testimonials-{{ section.id }} {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .pod-testimonials-grid-{{ section.id }} { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="pod-testimonials-{{ section.id }}">
+  <div class="pod-testimonials-inner-{{ section.id }}">
+
+    {%- if section.settings.label != blank -%}
+      <span class="pod-testimonials-label-{{ section.id }}">{{ section.settings.label }}</span>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2 class="pod-testimonials-heading-{{ section.id }}">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    <div class="pod-testimonials-grid-{{ section.id }}">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'testimonial' -%}
+          <div class="pod-testimonial-card-{{ section.id }}" {{ block.shopify_attributes }}>
+
+            <div class="pod-testimonial-stars-{{ section.id }}">
+              {%- assign rating = block.settings.rating | default: 5 -%}
+              {%- for i in (1..5) -%}
+                <span class="pod-testimonial-star-{{ section.id }}{% if i > rating %} empty{% endif %}">★</span>
+              {%- endfor -%}
+            </div>
+
+            {%- if block.settings.text != blank -%}
+              <p class="pod-testimonial-text-{{ section.id }}">"{{ block.settings.text }}"</p>
+            {%- endif -%}
+
+            <div class="pod-testimonial-author-{{ section.id }}">
+              <div class="pod-testimonial-avatar-{{ section.id }}">
+                {%- if block.settings.avatar != blank -%}
+                  <img
+                    src="{{ block.settings.avatar | image_url: width: 80 }}"
+                    alt="{{ block.settings.name }}"
+                    width="80" height="80" loading="lazy"
+                  >
+                {%- else -%}
+                  {{ block.settings.avatar_emoji | default: '👤' }}
+                {%- endif -%}
+              </div>
+              <div>
+                <p class="pod-testimonial-name-{{ section.id }}">{{ block.settings.name | default: 'Customer' }}</p>
+                {%- if block.settings.role != blank -%}
+                  <p class="pod-testimonial-role-{{ section.id }}">{{ block.settings.role }}</p>
+                {%- endif -%}
+              </div>
+            </div>
+
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "POD — Testimonials",
+  "tag": "div",
+  "class": "pod-section",
+  "settings": [
+    { "type": "header", "content": "🎨 الألوان" },
+    { "type": "color", "id": "bg_color",          "label": "خلفية القسم",          "default": "#0A0A0A" },
+    { "type": "color", "id": "heading_color",      "label": "لون العنوان",           "default": "#FFFFFF" },
+    { "type": "color", "id": "label_color",        "label": "لون التسمية",           "default": "#FFD600" },
+    { "type": "color", "id": "card_bg",            "label": "خلفية الكارد",          "default": "#111111" },
+    { "type": "color", "id": "card_border",        "label": "حد الكارد",             "default": "#1A1A1A" },
+    { "type": "color", "id": "card_hover_border",  "label": "حد الكارد عند التمرير", "default": "#3A2F00" },
+    { "type": "color", "id": "star_color",         "label": "لون النجوم",            "default": "#FFD600" },
+    { "type": "color", "id": "star_empty_color",   "label": "لون النجوم الفارغة",    "default": "#333333" },
+    { "type": "color", "id": "text_color",         "label": "لون نص التقييم",        "default": "#AAAAAA" },
+    { "type": "color", "id": "name_color",         "label": "لون اسم العميل",        "default": "#FFFFFF" },
+    { "type": "color", "id": "role_color",         "label": "لون وصف العميل",        "default": "#666666" },
+    { "type": "color", "id": "avatar_bg",          "label": "خلفية الصورة الشخصية", "default": "#222222" },
+    { "type": "header", "content": "✏️ المحتوى" },
+    { "type": "text",  "id": "label",   "label": "التسمية الصغيرة", "default": "WHAT THEY SAY" },
+    { "type": "text",  "id": "heading", "label": "العنوان الرئيسي", "default": "Loved by creators." },
+    { "type": "select", "id": "text_align", "label": "محاذاة العنوان",
+      "options": [
+        { "value": "left",   "label": "يسار" },
+        { "value": "center", "label": "وسط" },
+        { "value": "right",  "label": "يمين" }
+      ], "default": "center" },
+    { "type": "header", "content": "📐 الحجم والمساحة" },
+    { "type": "range", "id": "columns",       "label": "عدد الأعمدة",          "min": 1, "max": 4,    "step": 1,  "default": 3 },
+    { "type": "range", "id": "max_width",     "label": "أقصى عرض (px)",        "min": 800,"max": 1400, "step": 40, "default": 1200 },
+    { "type": "range", "id": "gap",           "label": "مسافة بين الكروت (px)","min": 8,  "max": 48,   "step": 4,  "default": 24 },
+    { "type": "range", "id": "card_radius",   "label": "تدوير الزوايا (px)",   "min": 0,  "max": 32,   "step": 2,  "default": 16 },
+    { "type": "range", "id": "card_padding",  "label": "حشو الكارد (px)",      "min": 16, "max": 48,   "step": 4,  "default": 28 },
+    { "type": "range", "id": "avatar_size",   "label": "حجم الصورة الشخصية (px)","min": 32,"max": 72,  "step": 4,  "default": 48 },
+    { "type": "range", "id": "star_size",     "label": "حجم النجوم (px)",      "min": 14, "max": 28,   "step": 1,  "default": 18 },
+    { "type": "range", "id": "text_size",     "label": "حجم نص التقييم (px)",  "min": 13, "max": 20,   "step": 1,  "default": 15 },
+    { "type": "range", "id": "name_size",     "label": "حجم اسم العميل (px)",  "min": 13, "max": 20,   "step": 1,  "default": 15 },
+    { "type": "range", "id": "label_size",    "label": "حجم التسمية (px)",     "min": 10, "max": 16,   "step": 1,  "default": 12 },
+    { "type": "range", "id": "heading_size",  "label": "حجم العنوان الأقصى (px)","min": 24,"max": 56,  "step": 2,  "default": 38 },
+    { "type": "range", "id": "heading_margin","label": "مسافة أسفل العنوان (px)","min": 16,"max": 64,  "step": 4,  "default": 48 },
+    { "type": "range", "id": "padding_top",   "label": "حشو علوي (px)",        "min": 40, "max": 160,  "step": 8,  "default": 80 },
+    { "type": "range", "id": "padding_bottom","label": "حشو سفلي (px)",        "min": 40, "max": 160,  "step": 8,  "default": 80 },
+    { "type": "range", "id": "padding_x",     "label": "حشو أفقي (px)",        "min": 16, "max": 80,   "step": 4,  "default": 40 }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "تقييم عميل",
+      "settings": [
+        { "type": "range",        "id": "rating",       "label": "عدد النجوم", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "textarea",     "id": "text",         "label": "نص التقييم", "default": "The quality blew me away! My hoodie arrived in 3 days and the print was perfect." },
+        { "type": "image_picker", "id": "avatar",       "label": "صورة العميل" },
+        { "type": "text",         "id": "avatar_emoji", "label": "إيموجي بديل للصورة", "default": "👤" },
+        { "type": "text",         "id": "name",         "label": "اسم العميل",  "default": "Ahmed K." },
+        { "type": "text",         "id": "role",         "label": "وصف / لقب",   "default": "Verified Buyer" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "POD — Testimonials",
+      "blocks": [
+        { "type": "testimonial", "settings": { "rating": 5, "name": "Ahmed K.", "role": "Verified Buyer", "text": "The quality blew me away! My hoodie arrived in 3 days and the print was perfect." } },
+        { "type": "testimonial", "settings": { "rating": 5, "name": "Sara M.", "role": "Repeat Customer", "text": "Ordered 4 times already. Best POD service I have used. Fast, affordable, premium quality." } },
+        { "type": "testimonial", "settings": { "rating": 4, "name": "Omar T.", "role": "Verified Buyer", "text": "Great experience from design to delivery. The mug looks exactly like the mockup." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,208 @@
+<style>
+  .pod-newsletter-{{ section.id }} {
+    background: {{ section.settings.bg_color }};
+    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_x }}px {{ section.settings.padding_bottom }}px;
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .pod-newsletter-inner-{{ section.id }} {
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+    background: {{ section.settings.card_bg }};
+    border: 1px solid {{ section.settings.card_border }};
+    border-radius: {{ section.settings.card_radius }}px;
+    padding: {{ section.settings.card_padding_y }}px {{ section.settings.card_padding_x }}px;
+    text-align: {{ section.settings.text_align }};
+  }
+  .pod-newsletter-icon-{{ section.id }} {
+    font-size: {{ section.settings.icon_size }}px;
+    margin-bottom: 12px;
+    display: block;
+    line-height: 1;
+  }
+  .pod-newsletter-heading-{{ section.id }} {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(22px, 3.5vw, {{ section.settings.heading_size }}px);
+    font-weight: 800;
+    color: {{ section.settings.heading_color }};
+    margin: 0 0 {{ section.settings.heading_margin }}px;
+    line-height: 1.15;
+  }
+  .pod-newsletter-subtext-{{ section.id }} {
+    font-size: {{ section.settings.subtext_size }}px;
+    color: {{ section.settings.subtext_color }};
+    margin: 0 0 {{ section.settings.form_margin_top }}px;
+    line-height: 1.5;
+  }
+  .pod-newsletter-form-{{ section.id }} {
+    display: flex;
+    gap: {{ section.settings.form_gap }}px;
+    max-width: {{ section.settings.form_max_width }}px;
+    margin: 0 {% if section.settings.text_align == 'center' %}auto{% else %}0{% endif %};
+    flex-wrap: wrap;
+  }
+  .pod-newsletter-input-{{ section.id }} {
+    flex: 1;
+    min-width: 200px;
+    background: {{ section.settings.input_bg }};
+    border: 1px solid {{ section.settings.input_border }};
+    color: {{ section.settings.input_color }};
+    font-family: 'DM Sans', sans-serif;
+    font-size: {{ section.settings.input_size }}px;
+    padding: {{ section.settings.input_padding_y }}px {{ section.settings.input_padding_x }}px;
+    border-radius: 100px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .pod-newsletter-input-{{ section.id }}::placeholder {
+    color: {{ section.settings.placeholder_color }};
+  }
+  .pod-newsletter-input-{{ section.id }}:focus {
+    border-color: {{ section.settings.input_focus_border }};
+    box-shadow: 0 0 0 3px {{ section.settings.input_focus_shadow }};
+  }
+  .pod-newsletter-btn-{{ section.id }} {
+    font-family: 'DM Sans', sans-serif;
+    font-size: {{ section.settings.btn_size }}px;
+    font-weight: 700;
+    background: {{ section.settings.btn_bg }};
+    color: {{ section.settings.btn_color }};
+    border: none;
+    padding: {{ section.settings.input_padding_y }}px {{ section.settings.btn_padding_x }}px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+  .pod-newsletter-btn-{{ section.id }}:hover {
+    background: {{ section.settings.btn_hover_bg }};
+    transform: translateY(-1px);
+  }
+  .pod-newsletter-success-{{ section.id }} {
+    display: none;
+    font-size: 15px;
+    color: {{ section.settings.success_color }};
+    font-weight: 600;
+    margin-top: 12px;
+  }
+  .pod-newsletter-privacy-{{ section.id }} {
+    font-size: 12px;
+    color: {{ section.settings.privacy_color }};
+    margin-top: 12px;
+  }
+  @media (max-width: 560px) {
+    .pod-newsletter-{{ section.id }} { padding-left: 16px; padding-right: 16px; }
+    .pod-newsletter-form-{{ section.id }} { flex-direction: column; }
+    .pod-newsletter-btn-{{ section.id }} { width: 100%; text-align: center; }
+    .pod-newsletter-input-{{ section.id }} { min-width: unset; }
+  }
+</style>
+
+<div class="pod-newsletter-{{ section.id }}">
+  <div class="pod-newsletter-inner-{{ section.id }}">
+
+    {%- if section.settings.icon != blank -%}
+      <span class="pod-newsletter-icon-{{ section.id }}">{{ section.settings.icon }}</span>
+    {%- endif -%}
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="pod-newsletter-heading-{{ section.id }}">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.subtext != blank -%}
+      <p class="pod-newsletter-subtext-{{ section.id }}">{{ section.settings.subtext }}</p>
+    {%- endif -%}
+
+    {% form 'customer', id: 'pod-nl-form-{{ section.id }}' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <div class="pod-newsletter-form-{{ section.id }}">
+        <input
+          class="pod-newsletter-input-{{ section.id }}"
+          type="email"
+          name="contact[email]"
+          placeholder="{{ section.settings.placeholder }}"
+          required
+          autocomplete="email"
+          aria-label="{{ section.settings.placeholder }}"
+        >
+        <button type="submit" class="pod-newsletter-btn-{{ section.id }}">
+          {{ section.settings.btn_text }}
+        </button>
+      </div>
+      {%- if form.posted_successfully? -%}
+        <p class="pod-newsletter-success-{{ section.id }}" style="display:block;">{{ section.settings.success_message }}</p>
+      {%- endif -%}
+    {% endform %}
+
+    {%- if section.settings.privacy_text != blank -%}
+      <p class="pod-newsletter-privacy-{{ section.id }}">{{ section.settings.privacy_text }}</p>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "POD — Newsletter",
+  "tag": "div",
+  "class": "pod-section",
+  "settings": [
+    { "type": "header", "content": "🎨 الألوان — الخلفية والكارد" },
+    { "type": "color", "id": "bg_color",      "label": "خلفية القسم",   "default": "#0A0A0A" },
+    { "type": "color", "id": "card_bg",       "label": "خلفية الكارد",  "default": "#111111" },
+    { "type": "color", "id": "card_border",   "label": "حد الكارد",     "default": "#1A1A1A" },
+    { "type": "color", "id": "heading_color", "label": "لون العنوان",   "default": "#FFFFFF" },
+    { "type": "color", "id": "subtext_color", "label": "لون النص الفرعي","default": "#888888" },
+    { "type": "header", "content": "🎨 الألوان — الفورم" },
+    { "type": "color", "id": "input_bg",          "label": "خلفية خانة الإيميل",         "default": "#1A1A1A" },
+    { "type": "color", "id": "input_border",      "label": "حد خانة الإيميل",            "default": "#333333" },
+    { "type": "color", "id": "input_color",       "label": "لون نص الإيميل",             "default": "#FFFFFF" },
+    { "type": "color", "id": "placeholder_color", "label": "لون الـ placeholder",        "default": "#555555" },
+    { "type": "color", "id": "input_focus_border","label": "حد الخانة عند الفوكس",       "default": "#FFD600" },
+    { "type": "color", "id": "input_focus_shadow","label": "ظل الخانة عند الفوكس",       "default": "#1A1200" },
+    { "type": "color", "id": "btn_bg",            "label": "خلفية الزرار",               "default": "#FFD600" },
+    { "type": "color", "id": "btn_color",         "label": "لون نص الزرار",              "default": "#0A0A0A" },
+    { "type": "color", "id": "btn_hover_bg",      "label": "خلفية الزرار عند التمرير",   "default": "#FFE033" },
+    { "type": "color", "id": "success_color",     "label": "لون رسالة النجاح",           "default": "#4CAF50" },
+    { "type": "color", "id": "privacy_color",     "label": "لون نص الخصوصية",            "default": "#444444" },
+    { "type": "header", "content": "✏️ المحتوى" },
+    { "type": "text",     "id": "icon",            "label": "إيموجي / أيقونة",                            "default": "✉️" },
+    { "type": "text",     "id": "heading",         "label": "العنوان",                                    "default": "Get exclusive deals & design tips." },
+    { "type": "textarea", "id": "subtext",         "label": "النص الفرعي",                                "default": "Join 5,000+ creators. No spam, unsubscribe anytime." },
+    { "type": "text",     "id": "placeholder",     "label": "نص خانة الإيميل",                           "default": "Enter your email address..." },
+    { "type": "text",     "id": "btn_text",        "label": "نص الزرار",                                  "default": "Subscribe →" },
+    { "type": "text",     "id": "success_message", "label": "رسالة النجاح",                               "default": "🎉 You're in! Check your inbox for a welcome gift." },
+    { "type": "text",     "id": "privacy_text",    "label": "نص الخصوصية (اتركه فارغ لإخفائه)",          "default": "🔒 We respect your privacy. Unsubscribe at any time." },
+    { "type": "select",   "id": "text_align",      "label": "محاذاة المحتوى",
+      "options": [
+        { "value": "left",   "label": "يسار" },
+        { "value": "center", "label": "وسط" },
+        { "value": "right",  "label": "يمين" }
+      ], "default": "center" },
+    { "type": "header", "content": "📐 الحجم والمساحة" },
+    { "type": "range", "id": "max_width",       "label": "أقصى عرض الكارد (px)",        "min": 400,"max": 1000,"step": 40, "default": 680 },
+    { "type": "range", "id": "card_radius",     "label": "تدوير زوايا الكارد (px)",     "min": 0,  "max": 40,  "step": 2,  "default": 24 },
+    { "type": "range", "id": "card_padding_y",  "label": "حشو الكارد عمودي (px)",       "min": 32, "max": 100, "step": 4,  "default": 60 },
+    { "type": "range", "id": "card_padding_x",  "label": "حشو الكارد أفقي (px)",        "min": 24, "max": 100, "step": 4,  "default": 56 },
+    { "type": "range", "id": "icon_size",       "label": "حجم الإيموجي (px)",           "min": 24, "max": 72,  "step": 4,  "default": 40 },
+    { "type": "range", "id": "heading_size",    "label": "حجم العنوان الأقصى (px)",     "min": 20, "max": 48,  "step": 2,  "default": 32 },
+    { "type": "range", "id": "heading_margin",  "label": "مسافة أسفل العنوان (px)",     "min": 8,  "max": 32,  "step": 2,  "default": 12 },
+    { "type": "range", "id": "subtext_size",    "label": "حجم النص الفرعي (px)",        "min": 13, "max": 20,  "step": 1,  "default": 15 },
+    { "type": "range", "id": "form_margin_top", "label": "مسافة فوق الفورم (px)",       "min": 16, "max": 48,  "step": 4,  "default": 28 },
+    { "type": "range", "id": "form_gap",        "label": "مسافة بين الإنبوت والزرار (px)","min": 8,"max": 24, "step": 2,  "default": 10 },
+    { "type": "range", "id": "form_max_width",  "label": "أقصى عرض الفورم (px)",        "min": 300,"max": 800, "step": 20, "default": 520 },
+    { "type": "range", "id": "input_size",      "label": "حجم خط الإنبوت (px)",         "min": 13, "max": 20,  "step": 1,  "default": 15 },
+    { "type": "range", "id": "input_padding_y", "label": "حشو الإنبوت عمودي (px)",      "min": 10, "max": 24,  "step": 1,  "default": 15 },
+    { "type": "range", "id": "input_padding_x", "label": "حشو الإنبوت أفقي (px)",       "min": 16, "max": 36,  "step": 2,  "default": 22 },
+    { "type": "range", "id": "btn_size",        "label": "حجم خط الزرار (px)",          "min": 13, "max": 20,  "step": 1,  "default": 15 },
+    { "type": "range", "id": "btn_padding_x",   "label": "حشو الزرار أفقي (px)",        "min": 20, "max": 56,  "step": 2,  "default": 28 },
+    { "type": "range", "id": "padding_top",     "label": "حشو القسم العلوي (px)",        "min": 40, "max": 160, "step": 8,  "default": 64 },
+    { "type": "range", "id": "padding_bottom",  "label": "حشو القسم السفلي (px)",        "min": 40, "max": 160, "step": 8,  "default": 64 },
+    { "type": "range", "id": "padding_x",       "label": "حشو القسم أفقي (px)",          "min": 16, "max": 80,  "step": 4,  "default": 40 }
+  ],
+  "presets": [
+    { "name": "POD — Newsletter" }
+  ]
+}
+{% endschema %}

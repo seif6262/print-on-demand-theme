@@ -1,0 +1,282 @@
+<style>
+  .pod-countdown-{{ section.id }} {
+    background: {{ section.settings.bg_color }};
+    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_x }}px {{ section.settings.padding_bottom }}px;
+    font-family: 'DM Sans', sans-serif;
+    text-align: center;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .pod-countdown-inner-{{ section.id }} {
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+  }
+  .pod-countdown-badge-{{ section.id }} {
+    display: inline-block;
+    background: {{ section.settings.badge_bg }};
+    color: {{ section.settings.badge_color }};
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 100px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .pod-countdown-heading-{{ section.id }} {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(22px, 4vw, {{ section.settings.heading_size }}px);
+    font-weight: 800;
+    color: {{ section.settings.heading_color }};
+    margin: 0 0 {{ section.settings.heading_margin }}px;
+    line-height: 1.15;
+  }
+  .pod-countdown-subtext-{{ section.id }} {
+    font-size: {{ section.settings.subtext_size }}px;
+    color: {{ section.settings.subtext_color }};
+    margin: 0 0 {{ section.settings.timer_margin_top }}px;
+    line-height: 1.5;
+  }
+  .pod-countdown-timer-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: {{ section.settings.timer_gap }}px;
+    flex-wrap: wrap;
+    margin-bottom: {{ section.settings.btn_margin_top }}px;
+  }
+  .pod-countdown-unit-{{ section.id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .pod-countdown-box-{{ section.id }} {
+    background: {{ section.settings.box_bg }};
+    border: 1px solid {{ section.settings.box_border }};
+    border-radius: {{ section.settings.box_radius }}px;
+    width: {{ section.settings.box_size }}px;
+    height: {{ section.settings.box_size }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: {{ section.settings.number_size }}px;
+    font-weight: 800;
+    color: {{ section.settings.number_color }};
+    line-height: 1;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+  .pod-countdown-box-{{ section.id }}.tick {
+    border-color: {{ section.settings.tick_border }};
+  }
+  .pod-countdown-colon-{{ section.id }} {
+    font-family: 'Syne', sans-serif;
+    font-size: {{ section.settings.number_size }}px;
+    font-weight: 800;
+    color: {{ section.settings.colon_color }};
+    margin-bottom: 26px;
+    opacity: 0.6;
+    animation: pod-blink-{{ section.id }} 1s step-end infinite;
+  }
+  @keyframes pod-blink-{{ section.id }} {
+    0%, 100% { opacity: 0.6; }
+    50%       { opacity: 0.15; }
+  }
+  .pod-countdown-label-{{ section.id }} {
+    font-size: {{ section.settings.unit_label_size }}px;
+    color: {{ section.settings.unit_label_color }};
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .pod-countdown-btn-{{ section.id }} {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: {{ section.settings.btn_size }}px;
+    font-weight: 700;
+    background: {{ section.settings.btn_bg }};
+    color: {{ section.settings.btn_color }};
+    padding: {{ section.settings.btn_padding_y }}px {{ section.settings.btn_padding_x }}px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .pod-countdown-btn-{{ section.id }}:hover {
+    background: {{ section.settings.btn_hover_bg }};
+    transform: translateY(-2px);
+    color: {{ section.settings.btn_color }};
+  }
+  .pod-countdown-expired-{{ section.id }} {
+    display: none;
+    font-size: 16px;
+    color: {{ section.settings.subtext_color }};
+    font-style: italic;
+  }
+  @media (max-width: 480px) {
+    .pod-countdown-{{ section.id }} { padding-left: 16px; padding-right: 16px; }
+    .pod-countdown-box-{{ section.id }} {
+      width: {{ section.settings.box_size | minus: 16 }}px;
+      height: {{ section.settings.box_size | minus: 16 }}px;
+      font-size: {{ section.settings.number_size | minus: 8 }}px;
+    }
+    .pod-countdown-timer-{{ section.id }} { gap: 8px; }
+  }
+</style>
+
+<div class="pod-countdown-{{ section.id }}">
+  <div class="pod-countdown-inner-{{ section.id }}">
+
+    {%- if section.settings.badge != blank -%}
+      <span class="pod-countdown-badge-{{ section.id }}">{{ section.settings.badge }}</span>
+    {%- endif -%}
+
+    {%- if section.settings.heading != blank -%}
+      <h2 class="pod-countdown-heading-{{ section.id }}">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.subtext != blank -%}
+      <p class="pod-countdown-subtext-{{ section.id }}">{{ section.settings.subtext }}</p>
+    {%- endif -%}
+
+    <div class="pod-countdown-timer-{{ section.id }}" id="pod-timer-{{ section.id }}">
+      <div class="pod-countdown-unit-{{ section.id }}">
+        <div class="pod-countdown-box-{{ section.id }}" id="pod-days-{{ section.id }}">00</div>
+        <span class="pod-countdown-label-{{ section.id }}">{{ section.settings.label_days }}</span>
+      </div>
+      <span class="pod-countdown-colon-{{ section.id }}">:</span>
+      <div class="pod-countdown-unit-{{ section.id }}">
+        <div class="pod-countdown-box-{{ section.id }}" id="pod-hours-{{ section.id }}">00</div>
+        <span class="pod-countdown-label-{{ section.id }}">{{ section.settings.label_hours }}</span>
+      </div>
+      <span class="pod-countdown-colon-{{ section.id }}">:</span>
+      <div class="pod-countdown-unit-{{ section.id }}">
+        <div class="pod-countdown-box-{{ section.id }}" id="pod-mins-{{ section.id }}">00</div>
+        <span class="pod-countdown-label-{{ section.id }}">{{ section.settings.label_minutes }}</span>
+      </div>
+      <span class="pod-countdown-colon-{{ section.id }}">:</span>
+      <div class="pod-countdown-unit-{{ section.id }}">
+        <div class="pod-countdown-box-{{ section.id }}" id="pod-secs-{{ section.id }}">00</div>
+        <span class="pod-countdown-label-{{ section.id }}">{{ section.settings.label_seconds }}</span>
+      </div>
+    </div>
+
+    <p class="pod-countdown-expired-{{ section.id }}" id="pod-expired-{{ section.id }}">
+      {{ section.settings.expired_text }}
+    </p>
+
+    {%- if section.settings.btn_text != blank -%}
+      <a href="{{ section.settings.btn_url }}" class="pod-countdown-btn-{{ section.id }}">
+        {{ section.settings.btn_text }}
+      </a>
+    {%- endif -%}
+
+  </div>
+</div>
+
+<script>
+  (function () {
+    var targetDate = new Date('{{ section.settings.target_date }}').getTime();
+    var daysEl  = document.getElementById('pod-days-{{ section.id }}');
+    var hoursEl = document.getElementById('pod-hours-{{ section.id }}');
+    var minsEl  = document.getElementById('pod-mins-{{ section.id }}');
+    var secsEl  = document.getElementById('pod-secs-{{ section.id }}');
+    var timerEl   = document.getElementById('pod-timer-{{ section.id }}');
+    var expiredEl = document.getElementById('pod-expired-{{ section.id }}');
+
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+    function tick() {
+      var now  = Date.now();
+      var diff = targetDate - now;
+
+      if (diff <= 0) {
+        timerEl.style.display   = 'none';
+        expiredEl.style.display = 'block';
+        return;
+      }
+
+      var days  = Math.floor(diff / 86400000);
+      var hours = Math.floor((diff % 86400000) / 3600000);
+      var mins  = Math.floor((diff % 3600000)  / 60000);
+      var secs  = Math.floor((diff % 60000)    / 1000);
+
+      if (daysEl)  daysEl.textContent  = pad(days);
+      if (hoursEl) hoursEl.textContent = pad(hours);
+      if (minsEl)  minsEl.textContent  = pad(mins);
+      if (secsEl)  secsEl.textContent  = pad(secs);
+
+      /* tick flash */
+      [daysEl, hoursEl, minsEl, secsEl].forEach(function(el) {
+        if (!el) return;
+        el.classList.add('tick');
+        setTimeout(function() { el.classList.remove('tick'); }, 300);
+      });
+    }
+
+    if (isNaN(targetDate)) return;
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "POD — Countdown Timer",
+  "tag": "div",
+  "class": "pod-section",
+  "settings": [
+    { "type": "header", "content": "🎨 الألوان" },
+    { "type": "color", "id": "bg_color",      "label": "خلفية القسم",                "default": "#0D0D0D" },
+    { "type": "color", "id": "heading_color",  "label": "لون العنوان",                "default": "#FFFFFF" },
+    { "type": "color", "id": "subtext_color",  "label": "لون النص الفرعي",            "default": "#888888" },
+    { "type": "color", "id": "badge_bg",       "label": "خلفية الشارة",               "default": "#FFD600" },
+    { "type": "color", "id": "badge_color",    "label": "لون نص الشارة",              "default": "#0A0A0A" },
+    { "type": "color", "id": "box_bg",         "label": "خلفية مربع الوقت",           "default": "#111111" },
+    { "type": "color", "id": "box_border",     "label": "حد مربع الوقت",              "default": "#1A1A1A" },
+    { "type": "color", "id": "tick_border",    "label": "لون الحد عند التغيير",       "default": "#FFD600" },
+    { "type": "color", "id": "number_color",   "label": "لون الأرقام",                "default": "#FFD600" },
+    { "type": "color", "id": "colon_color",    "label": "لون النقطتين (:)",           "default": "#FFD600" },
+    { "type": "color", "id": "unit_label_color","label": "لون تسميات الوقت",          "default": "#555555" },
+    { "type": "color", "id": "btn_bg",         "label": "خلفية الزرار",               "default": "#FFD600" },
+    { "type": "color", "id": "btn_color",      "label": "لون نص الزرار",              "default": "#0A0A0A" },
+    { "type": "color", "id": "btn_hover_bg",   "label": "خلفية الزرار عند التمرير",   "default": "#FFE033" },
+    { "type": "header", "content": "✏️ المحتوى" },
+    { "type": "text",     "id": "badge",        "label": "نص الشارة",                  "default": "⏰ Limited Time Offer" },
+    { "type": "text",     "id": "heading",      "label": "العنوان",                    "default": "Sale ends in..." },
+    { "type": "textarea", "id": "subtext",      "label": "النص الفرعي",                "default": "Don't miss out — grab your custom gear before the deal expires!" },
+    { "type": "text",     "id": "target_date",  "label": "تاريخ الانتهاء",
+      "default": "2025-01-31T23:59:59",
+      "info": "الشكل المطلوب: YYYY-MM-DDTHH:MM:SS — مثال: 2025-12-31T23:59:59" },
+    { "type": "text",     "id": "label_days",    "label": "تسمية الأيام",              "default": "Days" },
+    { "type": "text",     "id": "label_hours",   "label": "تسمية الساعات",             "default": "Hours" },
+    { "type": "text",     "id": "label_minutes", "label": "تسمية الدقائق",             "default": "Mins" },
+    { "type": "text",     "id": "label_seconds", "label": "تسمية الثواني",             "default": "Secs" },
+    { "type": "text",     "id": "expired_text",  "label": "رسالة انتهاء العرض",        "default": "This offer has ended. Check out our latest deals!" },
+    { "type": "text",     "id": "btn_text",      "label": "نص الزرار (اتركه فارغ لإخفائه)", "default": "Shop the Sale →" },
+    { "type": "url",      "id": "btn_url",       "label": "رابط الزرار" },
+    { "type": "header", "content": "📐 الحجم والمساحة" },
+    { "type": "range", "id": "max_width",       "label": "أقصى عرض (px)",           "min": 400,"max": 1000,"step": 40, "default": 700 },
+    { "type": "range", "id": "heading_size",    "label": "حجم العنوان الأقصى (px)", "min": 22, "max": 56,  "step": 2,  "default": 38 },
+    { "type": "range", "id": "heading_margin",  "label": "مسافة أسفل العنوان (px)", "min": 8,  "max": 40,  "step": 4,  "default": 16 },
+    { "type": "range", "id": "subtext_size",    "label": "حجم النص الفرعي (px)",    "min": 13, "max": 20,  "step": 1,  "default": 15 },
+    { "type": "range", "id": "timer_margin_top","label": "مسافة فوق الساعة (px)",   "min": 16, "max": 56,  "step": 4,  "default": 32 },
+    { "type": "range", "id": "timer_gap",       "label": "مسافة بين المربعات (px)", "min": 4,  "max": 32,  "step": 2,  "default": 16 },
+    { "type": "range", "id": "box_size",        "label": "حجم المربع (px)",          "min": 60, "max": 140, "step": 4,  "default": 90 },
+    { "type": "range", "id": "box_radius",      "label": "تدوير زوايا المربع (px)", "min": 0,  "max": 24,  "step": 2,  "default": 12 },
+    { "type": "range", "id": "number_size",     "label": "حجم الأرقام (px)",         "min": 24, "max": 60,  "step": 2,  "default": 38 },
+    { "type": "range", "id": "unit_label_size", "label": "حجم تسميات الوقت (px)",   "min": 9,  "max": 16,  "step": 1,  "default": 11 },
+    { "type": "range", "id": "btn_margin_top",  "label": "مسافة فوق الزرار (px)",   "min": 16, "max": 56,  "step": 4,  "default": 32 },
+    { "type": "range", "id": "btn_size",        "label": "حجم خط الزرار (px)",       "min": 13, "max": 20,  "step": 1,  "default": 15 },
+    { "type": "range", "id": "btn_padding_x",   "label": "حشو الزرار أفقي (px)",    "min": 20, "max": 64,  "step": 4,  "default": 36 },
+    { "type": "range", "id": "btn_padding_y",   "label": "حشو الزرار عمودي (px)",   "min": 10, "max": 28,  "step": 2,  "default": 16 },
+    { "type": "range", "id": "padding_top",     "label": "حشو علوي (px)",             "min": 40, "max": 160, "step": 8,  "default": 80 },
+    { "type": "range", "id": "padding_bottom",  "label": "حشو سفلي (px)",             "min": 40, "max": 160, "step": 8,  "default": 80 },
+    { "type": "range", "id": "padding_x",       "label": "حشو أفقي (px)",             "min": 16, "max": 80,  "step": 4,  "default": 40 }
+  ],
+  "presets": [
+    { "name": "POD — Countdown Timer" }
+  ]
+}
+{% endschema %}

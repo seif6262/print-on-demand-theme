@@ -1,0 +1,216 @@
+<style>
+  .pod-gallery-{{ section.id }} {
+    background: {{ section.settings.bg_color }};
+    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_x }}px {{ section.settings.padding_bottom }}px;
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .pod-gallery-inner-{{ section.id }} {
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+  }
+  .pod-gallery-label-{{ section.id }} {
+    font-size: {{ section.settings.label_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.label_color }};
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 12px;
+    text-align: {{ section.settings.text_align }};
+  }
+  .pod-gallery-heading-{{ section.id }} {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(24px, 4vw, {{ section.settings.heading_size }}px);
+    font-weight: 800;
+    color: {{ section.settings.heading_color }};
+    margin: 0 0 {{ section.settings.heading_margin }}px;
+    line-height: 1.1;
+    text-align: {{ section.settings.text_align }};
+  }
+  .pod-gallery-grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.columns }}, 1fr);
+    gap: {{ section.settings.gap }}px;
+  }
+  .pod-gallery-item-{{ section.id }} {
+    position: relative;
+    border-radius: {{ section.settings.radius }}px;
+    overflow: hidden;
+    aspect-ratio: {{ section.settings.aspect_ratio }};
+    background: {{ section.settings.item_bg }};
+    cursor: pointer;
+  }
+  .pod-gallery-item-{{ section.id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform {{ section.settings.hover_scale_speed }}ms ease;
+  }
+  .pod-gallery-item-{{ section.id }}:hover img {
+    transform: scale({{ section.settings.hover_scale | divided_by: 100.0 | plus: 1 }});
+  }
+  .pod-gallery-overlay-{{ section.id }} {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 55%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+  }
+  .pod-gallery-item-{{ section.id }}:hover .pod-gallery-overlay-{{ section.id }} {
+    opacity: 1;
+  }
+  .pod-gallery-caption-{{ section.id }} {
+    color: #FFFFFF;
+    font-size: {{ section.settings.caption_size }}px;
+    font-weight: 600;
+    font-family: 'Syne', sans-serif;
+    line-height: 1.3;
+  }
+  .pod-gallery-badge-{{ section.id }} {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: {{ section.settings.badge_bg }};
+    color: {{ section.settings.badge_color }};
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  @media (max-width: 900px) {
+    .pod-gallery-grid-{{ section.id }} { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .pod-gallery-{{ section.id }} { padding-left: 16px; padding-right: 16px; }
+    .pod-gallery-grid-{{ section.id }} { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  }
+</style>
+
+<div class="pod-gallery-{{ section.id }}">
+  <div class="pod-gallery-inner-{{ section.id }}">
+
+    {%- if section.settings.label != blank -%}
+      <span class="pod-gallery-label-{{ section.id }}">{{ section.settings.label }}</span>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2 class="pod-gallery-heading-{{ section.id }}">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    <div class="pod-gallery-grid-{{ section.id }}">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'image' -%}
+          {%- assign tag = 'div' -%}
+          {%- if block.settings.link != blank -%}{%- assign tag = 'a' -%}{%- endif -%}
+          <{{ tag }}
+            class="pod-gallery-item-{{ section.id }}"
+            {{ block.shopify_attributes }}
+            {%- if block.settings.link != blank %} href="{{ block.settings.link }}"{% endif %}
+          >
+            {%- if block.settings.image != blank -%}
+              <img
+                src="{{ block.settings.image | image_url: width: 800 }}"
+                alt="{{ block.settings.caption | default: block.settings.image.alt | escape }}"
+                width="800" height="800" loading="lazy"
+              >
+            {%- else -%}
+              <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:48px;">{{ block.settings.placeholder_emoji | default: '🖼️' }}</div>
+            {%- endif -%}
+
+            {%- if block.settings.badge != blank -%}
+              <span class="pod-gallery-badge-{{ section.id }}">{{ block.settings.badge }}</span>
+            {%- endif -%}
+
+            {%- if block.settings.caption != blank -%}
+              <div class="pod-gallery-overlay-{{ section.id }}">
+                <span class="pod-gallery-caption-{{ section.id }}">{{ block.settings.caption }}</span>
+              </div>
+            {%- endif -%}
+          </{{ tag }}>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "POD — Gallery",
+  "tag": "div",
+  "class": "pod-section",
+  "settings": [
+    { "type": "header", "content": "🎨 الألوان" },
+    { "type": "color", "id": "bg_color",     "label": "خلفية القسم",       "default": "#0D0D0D" },
+    { "type": "color", "id": "heading_color", "label": "لون العنوان",        "default": "#FFFFFF" },
+    { "type": "color", "id": "label_color",   "label": "لون التسمية",        "default": "#FFD600" },
+    { "type": "color", "id": "item_bg",       "label": "خلفية العنصر",       "default": "#1A1A1A" },
+    { "type": "color", "id": "badge_bg",      "label": "خلفية الشارة",       "default": "#FFD600" },
+    { "type": "color", "id": "badge_color",   "label": "لون نص الشارة",      "default": "#0A0A0A" },
+    { "type": "header", "content": "✏️ المحتوى" },
+    { "type": "text",  "id": "label",   "label": "التسمية الصغيرة", "default": "OUR WORK" },
+    { "type": "text",  "id": "heading", "label": "العنوان الرئيسي", "default": "Designs that turn heads." },
+    { "type": "select", "id": "text_align", "label": "محاذاة العنوان",
+      "options": [
+        { "value": "left",   "label": "يسار" },
+        { "value": "center", "label": "وسط" },
+        { "value": "right",  "label": "يمين" }
+      ], "default": "center" },
+    { "type": "header", "content": "📐 الشبكة والتأثيرات" },
+    { "type": "range",  "id": "columns",    "label": "عدد الأعمدة (ديسكتوب)", "min": 2, "max": 5,    "step": 1,   "default": 3 },
+    { "type": "range",  "id": "max_width",  "label": "أقصى عرض (px)",          "min": 800,"max": 1400, "step": 40,  "default": 1200 },
+    { "type": "range",  "id": "gap",        "label": "مسافة بين الصور (px)",   "min": 4,  "max": 40,   "step": 2,   "default": 12 },
+    { "type": "range",  "id": "radius",     "label": "تدوير الزوايا (px)",     "min": 0,  "max": 32,   "step": 2,   "default": 12 },
+    { "type": "select", "id": "aspect_ratio","label": "نسبة أبعاد الصورة",
+      "options": [
+        { "value": "1 / 1",  "label": "مربع 1:1" },
+        { "value": "4 / 3",  "label": "أفقي 4:3" },
+        { "value": "3 / 4",  "label": "عمودي 3:4" },
+        { "value": "16 / 9", "label": "واسع 16:9" }
+      ], "default": "1 / 1" },
+    { "type": "range",  "id": "hover_scale",      "label": "تكبير الصورة عند التمرير (%)", "min": 0, "max": 20, "step": 1, "default": 5 },
+    { "type": "range",  "id": "hover_scale_speed", "label": "سرعة التأثير (ms)",           "min": 150,"max": 700,"step": 50, "default": 350 },
+    { "type": "range",  "id": "caption_size",      "label": "حجم نص التسمية (px)",         "min": 12, "max": 22, "step": 1,  "default": 15 },
+    { "type": "range",  "id": "label_size",        "label": "حجم التسمية (px)",             "min": 10, "max": 16, "step": 1,  "default": 12 },
+    { "type": "range",  "id": "heading_size",      "label": "حجم العنوان الأقصى (px)",      "min": 24, "max": 56, "step": 2,  "default": 38 },
+    { "type": "range",  "id": "heading_margin",    "label": "مسافة أسفل العنوان (px)",      "min": 16, "max": 64, "step": 4,  "default": 40 },
+    { "type": "range",  "id": "padding_top",       "label": "حشو علوي (px)",                "min": 40, "max": 160,"step": 8,  "default": 80 },
+    { "type": "range",  "id": "padding_bottom",    "label": "حشو سفلي (px)",                "min": 40, "max": 160,"step": 8,  "default": 80 },
+    { "type": "range",  "id": "padding_x",         "label": "حشو أفقي (px)",                "min": 16, "max": 80, "step": 4,  "default": 40 }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "صورة",
+      "settings": [
+        { "type": "image_picker", "id": "image",            "label": "الصورة" },
+        { "type": "text",         "id": "placeholder_emoji","label": "إيموجي بديل (لو مفيش صورة)", "default": "🖼️" },
+        { "type": "text",         "id": "caption",          "label": "تسمية (تظهر عند التمرير)" },
+        { "type": "text",         "id": "badge",            "label": "شارة (اختياري)" },
+        { "type": "url",          "id": "link",             "label": "رابط عند الضغط" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "POD — Gallery",
+      "blocks": [
+        { "type": "image", "settings": { "caption": "Custom Hoodie Design", "badge": "New" } },
+        { "type": "image", "settings": { "caption": "Premium T-Shirt Print" } },
+        { "type": "image", "settings": { "caption": "Ceramic Mug Collection", "badge": "Hot" } },
+        { "type": "image", "settings": { "caption": "Phone Case Art" } },
+        { "type": "image", "settings": { "caption": "Tote Bag Print" } },
+        { "type": "image", "settings": { "caption": "Wall Poster Series" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
