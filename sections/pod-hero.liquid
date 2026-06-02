@@ -10,6 +10,10 @@
     padding: {{ section.settings.padding_top }}px {{ section.settings.padding_x }}px {{ section.settings.padding_bottom }}px;
     position: relative;
     overflow: hidden;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     font-family: 'DM Sans', sans-serif;
   }
 
@@ -61,7 +65,7 @@
     top: -20%;
     left: 50%;
     transform: translateX(-50%);
-    width: 700px;
+    width: min(700px, 100vw);
     height: 500px;
     background: radial-gradient(ellipse at center, {{ section.settings.gradient_color }}18 0%, transparent 70%);
     pointer-events: none;
@@ -104,7 +108,9 @@
     letter-spacing: {{ section.settings.heading_tracking }}px;
     color: {{ section.settings.heading_color }};
     margin: 0 0 {{ section.settings.heading_margin_bottom }}px;
-    max-width: 900px;
+    max-width: min(900px, 100%);
+    width: 100%;
+    box-sizing: border-box;
     position: relative;
     z-index: 1;
   }
