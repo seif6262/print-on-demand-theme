@@ -9,71 +9,6 @@
  */
 {
   "sections": {
-    "pod_nav_mm3WVJ": {
-      "type": "pod-nav",
-      "blocks": {
-        "nav_link_MchACc": {
-          "type": "nav_link",
-          "settings": {
-            "label": "Products",
-            "url": ""
-          }
-        },
-        "nav_link_9jRjaR": {
-          "type": "nav_link",
-          "settings": {
-            "label": "Design Tool",
-            "url": ""
-          }
-        },
-        "nav_link_8cjpXU": {
-          "type": "nav_link",
-          "settings": {
-            "label": "Pricing",
-            "url": ""
-          }
-        },
-        "nav_link_gRiqQe": {
-          "type": "nav_link",
-          "settings": {
-            "label": "About",
-            "url": ""
-          }
-        }
-      },
-      "block_order": [
-        "nav_link_MchACc",
-        "nav_link_9jRjaR",
-        "nav_link_8cjpXU",
-        "nav_link_gRiqQe"
-      ],
-      "name": "POD — Navigation",
-      "settings": {
-        "bg_color": "#0A0A0A",
-        "border_color": "#1A1A1A",
-        "logo_color": "#FFFFFF",
-        "logo_accent_color": "#FFD600",
-        "link_color": "#AAAAAA",
-        "link_hover_color": "#FFD600",
-        "cta_bg": "#FFD600",
-        "cta_color": "#0A0A0A",
-        "mobile_bg": "#0A0A0A",
-        "logo_word1": "YOUR",
-        "logo_word2": "BRAND",
-        "logo_url": "",
-        "cta_text": "Start Designing",
-        "cta_url": "",
-        "sticky": true,
-        "logo_size": 20,
-        "link_size": 14,
-        "mobile_link_size": 26,
-        "links_gap": 32,
-        "padding_x": 40,
-        "padding_y": 16,
-        "cta_padding_x": 24,
-        "cta_padding_y": 10
-      }
-    },
     "main": {
       "type": "product-information",
       "blocks": {
@@ -81,7 +16,7 @@
           "type": "_product-media-gallery",
           "static": true,
           "settings": {
-            "media_presentation": "carousel",
+            "media_presentation": "grid",
             "media_columns": "two",
             "image_gap": 4,
             "large_first_image": false,
@@ -90,7 +25,6 @@
             "slideshow_mobile_controls_style": "dots",
             "thumbnail_position": "right",
             "thumbnail_width": 44,
-            "thumbnail_radius": 0,
             "aspect_ratio": "adapt",
             "constrain_to_viewport": true,
             "media_fit": "contain",
@@ -164,9 +98,7 @@
                 "overlay_color": "#00000026",
                 "overlay_style": "solid",
                 "gradient_direction": "to top",
-                "link": "",
                 "open_in_new_tab": false,
-                "placeholder": "",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -257,7 +189,6 @@
               "settings": {
                 "stacking": true,
                 "show_pickup_availability": false,
-                "gift_card_form": true,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -287,31 +218,99 @@
               },
               "block_order": []
             },
-            "text_aEtTtq": {
-              "type": "text",
-              "name": "Product description",
+            "accordion_desc": {
+              "type": "accordion",
               "settings": {
-                "text": "{{ closest.product.description }}",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-primary--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "icon": "plus",
+                "dividers": true,
+                "type_preset": ""
               },
-              "blocks": {}
+              "blocks": {
+                "row_desc": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Product Description",
+                    "open_by_default": true,
+                    "icon": "none"
+                  },
+                  "blocks": {
+                    "text_desc": {
+                      "type": "text",
+                      "settings": {
+                        "text": "{{ closest.product.description }}",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "color": ""
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_desc"
+                  ]
+                },
+                "row_shipping": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Shipping & Delivery",
+                    "open_by_default": false,
+                    "icon": "box"
+                  },
+                  "blocks": {
+                    "text_ship": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>🚀 <strong>Fast Dispatch:</strong> Orders are printed and dispatched within <strong>48 hours</strong>.</p><p>📦 <strong>Standard Delivery:</strong> 5–7 business days depending on your location.</p><p>🌍 We ship to <strong>150+ countries</strong> worldwide with full tracking on every order.</p><p>✈️ International orders may be subject to customs duties — these are the responsibility of the customer.</p>",
+                        "width": "100%",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "color": ""
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_ship"
+                  ]
+                },
+                "row_returns": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Returns & Exchanges",
+                    "open_by_default": false,
+                    "icon": "none"
+                  },
+                  "blocks": {
+                    "text_ret": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>✅ We accept returns within <strong>14 days</strong> of delivery for print quality issues.</p><p>🎨 Custom-printed products are <strong>non-refundable</strong> unless there is a manufacturing defect.</p><p>📸 To start a return, contact us with a photo of the issue and your order number.</p><p>🔄 Exchanges are available for size or color issues — just reach out within 14 days.</p>",
+                        "width": "100%",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "color": ""
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_ret"
+                  ]
+                }
+              },
+              "block_order": [
+                "row_desc",
+                "row_shipping",
+                "row_returns"
+              ]
             }
           },
           "block_order": [
@@ -319,7 +318,7 @@
             "divider_VJhene",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
-            "text_aEtTtq"
+            "accordion_desc"
           ]
         }
       },
@@ -329,7 +328,6 @@
         "equal_columns": false,
         "limit_details_width": false,
         "gap": 48,
-        "enable_sticky_add_to_cart": true,
         "color_scheme": "scheme-5",
         "padding-block-start": 0,
         "padding-block-end": 0
@@ -476,132 +474,91 @@
         "padding-block-end": 48
       }
     },
-    "pod_countdown_JHwpae": {
-      "type": "pod-countdown",
-      "name": "POD — Countdown Timer",
-      "settings": {
-        "bg_color": "#0D0D0D",
-        "heading_color": "#FFFFFF",
-        "subtext_color": "#888888",
-        "badge_bg": "#FFD600",
-        "badge_color": "#0A0A0A",
-        "box_bg": "#111111",
-        "box_border": "#1A1A1A",
-        "tick_border": "#FFD600",
-        "number_color": "#FFD600",
-        "colon_color": "#FFD600",
-        "unit_label_color": "#555555",
-        "btn_bg": "#FFD600",
-        "btn_color": "#0A0A0A",
-        "btn_hover_bg": "#FFE033",
-        "badge": "⏰ Limited Time Offer",
-        "heading": "Sale ends in...",
-        "subtext": "Don't miss out — grab your custom gear before the deal expires!",
-        "target_date": "2026-06-10T23:59:59",
-        "label_days": "Days",
-        "label_hours": "Hours",
-        "label_minutes": "Mins",
-        "label_seconds": "Secs",
-        "expired_text": "This offer has ended. Check out our latest deals!",
-        "btn_text": "Shop the Sale →",
-        "btn_url": "",
-        "max_width": 720,
-        "heading_size": 38,
-        "heading_margin": 16,
-        "subtext_size": 15,
-        "timer_margin_top": 32,
-        "timer_gap": 16,
-        "box_size": 92,
-        "box_radius": 12,
-        "number_size": 38,
-        "unit_label_size": 11,
-        "btn_margin_top": 32,
-        "btn_size": 15,
-        "btn_padding_x": 36,
-        "btn_padding_y": 16,
-        "padding_top": 80,
-        "padding_bottom": 80,
-        "padding_x": 40
-      }
+    "pod_product_features": {
+      "type": "pod-product-features",
+      "settings": {}
     },
-    "pod_marquee_KHWNq3": {
-      "type": "pod-marquee",
+    "pod_faq_product": {
+      "type": "pod-faq",
       "blocks": {
-        "marquee_item_a7MJke": {
-          "type": "marquee_item",
+        "faq_q1": {
+          "type": "faq_item",
           "settings": {
-            "text": "T-Shirts"
+            "question": "What printing method do you use?",
+            "answer": "We use Direct-to-Garment (DTG) printing for the most vibrant, detailed results on fabric.",
+            "open_by_default": true
           }
         },
-        "marquee_item_apPx3P": {
-          "type": "marquee_item",
+        "faq_q2": {
+          "type": "faq_item",
           "settings": {
-            "text": "Hoodies"
+            "question": "How do I care for my printed item?",
+            "answer": "Wash inside out on a cold gentle cycle. Do not iron directly on the print."
           }
         },
-        "marquee_item_3FQcf3": {
-          "type": "marquee_item",
+        "faq_q3": {
+          "type": "faq_item",
           "settings": {
-            "text": "Mugs"
+            "question": "Can I return or exchange?",
+            "answer": "Yes — returns within 14 days for print quality issues. Custom products are non-refundable unless defective."
           }
         },
-        "marquee_item_E9XFwD": {
-          "type": "marquee_item",
+        "faq_q4": {
+          "type": "faq_item",
           "settings": {
-            "text": "Phone Cases"
-          }
-        },
-        "marquee_item_mzhnEf": {
-          "type": "marquee_item",
-          "settings": {
-            "text": "Tote Bags"
-          }
-        },
-        "marquee_item_8mUxW6": {
-          "type": "marquee_item",
-          "settings": {
-            "text": "Stickers"
-          }
-        },
-        "marquee_item_hYDzqR": {
-          "type": "marquee_item",
-          "settings": {
-            "text": "Posters"
-          }
-        },
-        "marquee_item_6CNbUb": {
-          "type": "marquee_item",
-          "settings": {
-            "text": "Caps"
+            "question": "How long does shipping take?",
+            "answer": "Most orders dispatch within 48 hours and arrive in 5-7 business days."
           }
         }
       },
       "block_order": [
-        "marquee_item_a7MJke",
-        "marquee_item_apPx3P",
-        "marquee_item_3FQcf3",
-        "marquee_item_E9XFwD",
-        "marquee_item_mzhnEf",
-        "marquee_item_8mUxW6",
-        "marquee_item_hYDzqR",
-        "marquee_item_6CNbUb"
+        "faq_q1",
+        "faq_q2",
+        "faq_q3",
+        "faq_q4"
       ],
-      "name": "POD — Marquee",
-      "settings": {
-        "bg_color": "#FFD600",
-        "text_color": "#0A0A0A",
-        "separator_color": "#0A0A0A",
-        "separator": "✦",
-        "font_size": 14,
-        "font_weight": 600,
-        "letter_spacing": 1,
-        "separator_size": 10,
-        "item_gap": 32,
-        "speed": 18,
-        "padding_y": 14,
-        "uppercase": false,
-        "pause_on_hover": true
-      }
+      "settings": {}
+    },
+    "pod_testimonials_product": {
+      "type": "pod-testimonials",
+      "blocks": {
+        "t1": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "The quality blew me away! My hoodie arrived in 3 days and the print was perfect.",
+            "avatar_emoji": "👤",
+            "name": "Ahmed K.",
+            "role": "Verified Buyer"
+          }
+        },
+        "t2": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "Ordered 4 times already. Best POD service I have used.",
+            "avatar_emoji": "👤",
+            "name": "Sara M.",
+            "role": "Repeat Customer"
+          }
+        },
+        "t3": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 4,
+            "text": "Great experience from design to delivery. Exactly like the mockup.",
+            "avatar_emoji": "👤",
+            "name": "Omar T.",
+            "role": "Verified Buyer"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "settings": {}
     },
     "pod_social_proof_product": {
       "type": "pod-social-proof",
@@ -645,322 +602,20 @@
         "s3",
         "s4"
       ],
-      "settings": {
-        "bg_color": "#0d0d0d",
-        "border_top": "#1a1a1a",
-        "border_bottom": "#1a1a1a",
-        "divider_color": "#2a2a2a",
-        "stat_bg": "#151515",
-        "stat_border": "#222222",
-        "stat_value_color": "#ffd600",
-        "stat_label_color": "#777777",
-        "label_color": "#555555",
-        "logo_text_color": "#555555",
-        "label": "Trusted by creators worldwide",
-        "max_width": 1000,
-        "items_gap": 32,
-        "label_size": 11,
-        "label_margin": 20,
-        "stat_icon_size": 24,
-        "stat_value_size": 26,
-        "stat_label_size": 12,
-        "stat_inner_gap": 10,
-        "stat_padding_y": 14,
-        "stat_padding_x": 20,
-        "stat_radius": 10,
-        "logo_height": 32,
-        "logo_padding": 8,
-        "logo_opacity": 50,
-        "logo_grayscale": 100,
-        "logo_text_size": 16,
-        "padding_y": 32,
-        "padding_x": 40
-      }
+      "settings": {}
     },
-    "pod_product_features_Ujjjg9": {
-      "type": "pod-product-features",
-      "blocks": {
-        "feature_bjLjqR": {
-          "type": "feature",
-          "settings": {
-            "icon": "🖨️",
-            "title": "Premium Print Quality",
-            "text": "DTG printing with vibrant, long-lasting colors that won't fade or crack."
-          }
-        },
-        "feature_LKTEnY": {
-          "type": "feature",
-          "settings": {
-            "icon": "👕",
-            "title": "Premium Fabric",
-            "text": "100% combed cotton, pre-shrunk and super soft to the touch."
-          }
-        },
-        "feature_T3bRJp": {
-          "type": "feature",
-          "settings": {
-            "icon": "⚡",
-            "title": "Fast Dispatch",
-            "text": "Your order is printed and dispatched within 48 hours."
-          }
-        },
-        "feature_zKYFNB": {
-          "type": "feature",
-          "settings": {
-            "icon": "🌍",
-            "title": "Ships Worldwide",
-            "text": "We ship to 150+ countries with full tracking on every order."
-          }
-        }
-      },
-      "block_order": [
-        "feature_bjLjqR",
-        "feature_LKTEnY",
-        "feature_T3bRJp",
-        "feature_zKYFNB"
-      ],
-      "name": "POD — Product Features",
-      "settings": {
-        "bg_color": "#0A0A0A",
-        "heading_color": "#FFFFFF",
-        "label_color": "#FFD600",
-        "card_bg": "#111111",
-        "card_border": "#1A1A1A",
-        "card_hover_border": "#FFD600",
-        "title_color": "#FFFFFF",
-        "text_color": "#888888",
-        "label": "WHY PRINT WITH US",
-        "heading": "Quality you can feel.",
-        "text_align": "center",
-        "columns": 4,
-        "max_width": 1080,
-        "gap": 20,
-        "card_radius": 14,
-        "card_padding_y": 28,
-        "card_padding_x": 24,
-        "icon_size": 36,
-        "title_size": 16,
-        "text_size": 14,
-        "label_size": 11,
-        "heading_size": 34,
-        "heading_margin": 40,
-        "padding_top": 64,
-        "padding_bottom": 64,
-        "padding_x": 40
-      }
-    },
-    "pod_testimonials_product": {
-      "type": "pod-testimonials",
-      "blocks": {
-        "t1": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "text": "The quality blew me away! My hoodie arrived in 3 days and the print was perfect.",
-            "avatar_emoji": "👤",
-            "name": "Ahmed K.",
-            "role": "Verified Buyer"
-          }
-        },
-        "t2": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "text": "Ordered 4 times already. Best POD service I have used.",
-            "avatar_emoji": "👤",
-            "name": "Sara M.",
-            "role": "Repeat Customer"
-          }
-        },
-        "t3": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 4,
-            "text": "Great experience from design to delivery. Exactly like the mockup.",
-            "avatar_emoji": "👤",
-            "name": "Omar T.",
-            "role": "Verified Buyer"
-          }
-        }
-      },
-      "block_order": [
-        "t1",
-        "t2",
-        "t3"
-      ],
-      "settings": {
-        "bg_color": "#0a0a0a",
-        "heading_color": "#ffffff",
-        "label_color": "#ffd600",
-        "card_bg": "#111111",
-        "card_border": "#1a1a1a",
-        "card_hover_border": "#3a2f00",
-        "star_color": "#ffd600",
-        "star_empty_color": "#333333",
-        "text_color": "#aaaaaa",
-        "name_color": "#ffffff",
-        "role_color": "#666666",
-        "avatar_bg": "#222222",
-        "label": "WHAT THEY SAY",
-        "heading": "Loved by creators.",
-        "text_align": "center",
-        "columns": 3,
-        "max_width": 1200,
-        "gap": 24,
-        "card_radius": 16,
-        "card_padding": 28,
-        "avatar_size": 48,
-        "star_size": 18,
-        "text_size": 15,
-        "name_size": 15,
-        "label_size": 12,
-        "heading_size": 38,
-        "heading_margin": 48,
-        "padding_top": 80,
-        "padding_bottom": 80,
-        "padding_x": 40
-      }
-    },
-    "pod_faq_product": {
-      "type": "pod-faq",
-      "blocks": {
-        "faq_q1": {
-          "type": "faq_item",
-          "settings": {
-            "question": "What printing method do you use?",
-            "answer": "We use Direct-to-Garment (DTG) printing for the most vibrant, detailed results on fabric.",
-            "open_by_default": true
-          }
-        },
-        "faq_q2": {
-          "type": "faq_item",
-          "settings": {
-            "question": "How do I care for my printed item?",
-            "answer": "Wash inside out on a cold gentle cycle. Do not iron directly on the print.",
-            "open_by_default": false
-          }
-        },
-        "faq_q3": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Can I return or exchange?",
-            "answer": "Yes — returns within 14 days for print quality issues. Custom products are non-refundable unless defective.",
-            "open_by_default": false
-          }
-        },
-        "faq_q4": {
-          "type": "faq_item",
-          "settings": {
-            "question": "How long does shipping take?",
-            "answer": "Most orders dispatch within 48 hours and arrive in 5-7 business days.",
-            "open_by_default": false
-          }
-        }
-      },
-      "block_order": [
-        "faq_q1",
-        "faq_q2",
-        "faq_q3",
-        "faq_q4"
-      ],
-      "settings": {
-        "bg_color": "#0a0a0a",
-        "label_color": "#ffd600",
-        "heading_color": "#ffffff",
-        "item_bg": "#111111",
-        "item_border": "#1a1a1a",
-        "active_border": "#3a2f00",
-        "question_color": "#ffffff",
-        "active_question_color": "#ffd600",
-        "answer_color": "#888888",
-        "icon_bg": "#1a1a1a",
-        "icon_color": "#ffffff",
-        "active_icon_bg": "#ffd600",
-        "active_icon_color": "#0a0a0a",
-        "label": "FAQ",
-        "heading": "Got questions? We have answers.",
-        "one_open_at_a_time": true,
-        "text_align": "center",
-        "max_width": 800,
-        "item_gap": 10,
-        "item_radius": 12,
-        "question_size": 16,
-        "answer_size": 15,
-        "question_padding": 20,
-        "question_padding_x": 24,
-        "answer_padding_top": 16,
-        "answer_padding_bottom": 20,
-        "icon_size": 32,
-        "label_size": 12,
-        "heading_size": 38,
-        "heading_margin": 48,
-        "padding_top": 80,
-        "padding_bottom": 80,
-        "padding_x": 40
-      }
-    },
-    "pod_footer_iGxMhT": {
-      "type": "pod-footer",
-      "blocks": {
-        "link_BDzXRQ": {
-          "type": "link",
-          "settings": {
-            "label": "Privacy Policy",
-            "url": ""
-          }
-        },
-        "link_6UUgLb": {
-          "type": "link",
-          "settings": {
-            "label": "Terms of Service",
-            "url": ""
-          }
-        },
-        "link_3AXAKi": {
-          "type": "link",
-          "settings": {
-            "label": "Contact Us",
-            "url": ""
-          }
-        }
-      },
-      "block_order": [
-        "link_BDzXRQ",
-        "link_6UUgLb",
-        "link_3AXAKi"
-      ],
-      "name": "POD — Footer",
-      "settings": {
-        "bg_color": "#0A0A0A",
-        "border_color": "#1A1A1A",
-        "logo_color": "#FFFFFF",
-        "logo_accent": "#FFD600",
-        "link_color": "#666666",
-        "link_hover_color": "#FFD600",
-        "copy_color": "#444444",
-        "logo_word1": "YOUR",
-        "logo_word2": "BRAND",
-        "copyright": "© 2024 Your Brand. All rights reserved.",
-        "max_width": 1200,
-        "logo_size": 18,
-        "link_size": 13,
-        "copy_size": 13,
-        "links_gap": 24,
-        "padding_y": 32,
-        "padding_x": 40
-      }
+    "pod_newsletter_product": {
+      "type": "pod-newsletter",
+      "settings": {}
     }
   },
   "order": [
-    "pod_nav_mm3WVJ",
     "main",
+    "pod_product_features",
     "product_recommendations_qggXJq",
-    "pod_countdown_JHwpae",
-    "pod_marquee_KHWNq3",
     "pod_social_proof_product",
-    "pod_product_features_Ujjjg9",
     "pod_testimonials_product",
     "pod_faq_product",
-    "pod_footer_iGxMhT"
+    "pod_newsletter_product"
   ]
 }
