@@ -78,6 +78,10 @@
       "type": "pod-hero",
       "name": "POD — Hero",
       "settings": {
+        "image_fit": "cover",
+        "image_position": "center center",
+        "overlay_color": "#000000",
+        "overlay_opacity": 50,
         "bg_color": "#0a0a0a",
         "heading_color": "#ffffff",
         "accent_color": "#ffd600",
@@ -119,7 +123,11 @@
         "min_height": 85,
         "padding_top": 100,
         "padding_bottom": 100,
-        "padding_x": 24
+        "padding_x": 24,
+        "min_height_mobile": 75,
+        "padding_top_mobile": 80,
+        "padding_bottom_mobile": 80,
+        "padding_x_mobile": 20
       }
     },
     "pod_marquee_h4V3kM": {
@@ -280,130 +288,6 @@
     },
     "pod_products_Jej6Db": {
       "type": "pod-products",
-      "blocks": {
-        "filter_3RVa3T": {
-          "type": "filter",
-          "settings": {
-            "label": "Apparel",
-            "category": "apparel"
-          }
-        },
-        "filter_dTR7GD": {
-          "type": "filter",
-          "settings": {
-            "label": "Accessories",
-            "category": "accessories"
-          }
-        },
-        "filter_66apbp": {
-          "type": "filter",
-          "settings": {
-            "label": "Home & Living",
-            "category": "home"
-          }
-        },
-        "product_bTNCaR": {
-          "type": "product",
-          "settings": {
-            "name": "Premium T-Shirt",
-            "emoji": "👕",
-            "category": "apparel",
-            "price": "$14.99",
-            "badge": "Best Seller",
-            "url": ""
-          }
-        },
-        "product_6MEgKC": {
-          "type": "product",
-          "settings": {
-            "name": "Unisex Hoodie",
-            "emoji": "🧥",
-            "category": "apparel",
-            "price": "$29.99",
-            "badge": "Best Seller",
-            "url": ""
-          }
-        },
-        "product_Nxm6Qe": {
-          "type": "product",
-          "settings": {
-            "name": "Snapback Cap",
-            "emoji": "🧢",
-            "category": "accessories",
-            "price": "$18.99",
-            "badge": "New",
-            "url": ""
-          }
-        },
-        "product_XiMUtP": {
-          "type": "product",
-          "settings": {
-            "name": "Phone Case",
-            "emoji": "📱",
-            "category": "accessories",
-            "price": "$12.99",
-            "badge": "Best Seller",
-            "url": ""
-          }
-        },
-        "product_6nfy6X": {
-          "type": "product",
-          "settings": {
-            "name": "Ceramic Mug",
-            "emoji": "☕",
-            "category": "home",
-            "price": "$9.99",
-            "badge": "Best Seller",
-            "url": ""
-          }
-        },
-        "product_4TRVUN": {
-          "type": "product",
-          "settings": {
-            "name": "Wall Poster",
-            "emoji": "🖼️",
-            "category": "home",
-            "price": "$11.99",
-            "badge": "Popular",
-            "url": ""
-          }
-        },
-        "product_7UQQji": {
-          "type": "product",
-          "settings": {
-            "name": "Custom Socks",
-            "emoji": "🧦",
-            "category": "apparel",
-            "price": "$8.99",
-            "badge": "Best Seller",
-            "url": ""
-          }
-        },
-        "product_UwfX6N": {
-          "type": "product",
-          "settings": {
-            "name": "Tote Bag",
-            "emoji": "👜",
-            "category": "accessories",
-            "price": "$13.99",
-            "badge": "Best Seller",
-            "url": ""
-          }
-        }
-      },
-      "block_order": [
-        "filter_3RVa3T",
-        "filter_dTR7GD",
-        "filter_66apbp",
-        "product_bTNCaR",
-        "product_6MEgKC",
-        "product_Nxm6Qe",
-        "product_XiMUtP",
-        "product_6nfy6X",
-        "product_4TRVUN",
-        "product_7UQQji",
-        "product_UwfX6N"
-      ],
       "name": "POD — Products Grid",
       "settings": {
         "bg_color": "#0a0a0a",
@@ -416,6 +300,7 @@
         "image_bg": "#1a1a1a",
         "name_color": "#ffffff",
         "price_color": "#ffd600",
+        "compare_price_color": "#555555",
         "badge_bg": "#ffd600",
         "badge_color": "#0a0a0a",
         "filter_border": "#333333",
@@ -431,16 +316,24 @@
         "filter_all_label": "All",
         "card_btn_label": "Customize",
         "text_align": "center",
+        "products_per_tab": 8,
         "columns": 4,
-        "max_width": 1200,
         "gap": 20,
+        "padding_x_mobile": 16,
+        "gap_mobile": 10,
+        "info_padding_mobile": 12,
+        "name_size_mobile": 13,
+        "max_width": 1200,
         "card_radius": 16,
-        "emoji_size": 64,
+        "fallback_emoji_size": 64,
         "info_padding": 20,
-        "info_gap": 8,
         "label_size": 12,
         "heading_size": 38,
         "heading_margin": 32,
+        "filter_gap": 10,
+        "filter_size": 13,
+        "filter_pad_x": 20,
+        "filter_pad_y": 8,
         "filter_margin": 32,
         "name_size": 16,
         "price_size": 16,
@@ -558,7 +451,17 @@
         "feature_desc_size": 14,
         "padding_top": 80,
         "padding_bottom": 80,
-        "padding_x": 40
+        "padding_x": 40,
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 48,
+        "padding_x_mobile": 16,
+        "col_gap_mobile": 40,
+        "heading_size_mobile": 26,
+        "stat_value_size_mobile": 36,
+        "stat_padding_mobile": 20,
+        "icon_size_mobile": 40,
+        "icon_font_size_mobile": 18,
+        "features_margin_top_mobile": 24
       }
     },
     "pod_footer_PbTK4q": {
