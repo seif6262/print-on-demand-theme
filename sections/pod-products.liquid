@@ -163,14 +163,15 @@
       grid-template-columns: repeat(3, 1fr);
     }
   }
-  @media (max-width: 768px) {
-    .pod-products-grid-{{ section.id }} {
-      grid-template-columns: repeat(2, 1fr);
+
+  /* موبايل: دايماً عمودين بغض النظر عن حجم الشاشة */
+  @media (max-width: 767px) {
+    .pod-products-{{ section.id }} {
+      padding-left: {{ section.settings.padding_x_mobile }}px;
+      padding-right: {{ section.settings.padding_x_mobile }}px;
     }
-  }
-  @media (max-width: 400px) {
     .pod-products-grid-{{ section.id }} {
-      grid-template-columns: repeat({{ section.settings.columns_mobile }}, 1fr);
+      grid-template-columns: repeat(2, 1fr) !important;
       gap: {{ section.settings.gap_mobile }}px;
     }
     .pod-product-info-{{ section.id }} {
@@ -178,6 +179,13 @@
     }
     .pod-product-name-{{ section.id }} {
       font-size: {{ section.settings.name_size_mobile }}px;
+    }
+    .pod-products-filters-{{ section.id }} {
+      gap: 8px;
+    }
+    .pod-filter-btn-{{ section.id }} {
+      font-size: 12px;
+      padding: 6px 14px;
     }
   }
 </style>
@@ -524,16 +532,16 @@
     },
     {
       "type": "header",
-      "content": "📱 الشبكة — موبايل صغير (أقل من 400px)"
+      "content": "📱 الشبكة — موبايل (أقل من 767px)"
     },
     {
       "type": "range",
-      "id": "columns_mobile",
-      "label": "عدد الأعمدة موبايل صغير",
-      "min": 1,
-      "max": 2,
-      "step": 1,
-      "default": 2
+      "id": "padding_x_mobile",
+      "label": "حشو أفقي موبايل (px)",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "default": 16
     },
     {
       "type": "range",
