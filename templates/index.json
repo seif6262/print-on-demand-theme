@@ -464,6 +464,79 @@
         "features_margin_top_mobile": 24
       }
     },
+    "pod_testimonials_GGddH4": {
+      "type": "pod-testimonials",
+      "blocks": {
+        "testimonial_JePx7y": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "The quality blew me away! My hoodie arrived in 3 days and the print was perfect.",
+            "avatar_emoji": "👤",
+            "name": "Ahmed K.",
+            "role": "Verified Buyer"
+          }
+        },
+        "testimonial_b7fmAE": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "Ordered 4 times already. Best POD service I have used. Fast, affordable, premium quality.",
+            "avatar_emoji": "👤",
+            "name": "Sara M.",
+            "role": "Repeat Customer"
+          }
+        },
+        "testimonial_8JfFEB": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 4,
+            "text": "Great experience from design to delivery. The mug looks exactly like the mockup.",
+            "avatar_emoji": "👤",
+            "name": "Omar T.",
+            "role": "Verified Buyer"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_JePx7y",
+        "testimonial_b7fmAE",
+        "testimonial_8JfFEB"
+      ],
+      "name": "POD — Testimonials",
+      "settings": {
+        "bg_color": "#0A0A0A",
+        "heading_color": "#FFFFFF",
+        "label_color": "#FFD600",
+        "card_bg": "#111111",
+        "card_border": "#1A1A1A",
+        "card_hover_border": "#3A2F00",
+        "star_color": "#FFD600",
+        "star_empty_color": "#333333",
+        "text_color": "#AAAAAA",
+        "name_color": "#FFFFFF",
+        "role_color": "#666666",
+        "avatar_bg": "#222222",
+        "label": "WHAT THEY SAY",
+        "heading": "Loved by creators.",
+        "text_align": "center",
+        "columns": 3,
+        "max_width": 1200,
+        "gap": 24,
+        "card_radius": 16,
+        "card_padding": 28,
+        "avatar_size": 48,
+        "star_size": 18,
+        "text_size": 15,
+        "name_size": 15,
+        "label_size": 12,
+        "heading_size": 38,
+        "heading_margin": 48,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_x": 40
+      }
+    },
     "pod_footer_PbTK4q": {
       "type": "pod-footer",
       "blocks": {
@@ -523,6 +596,7 @@
     "pod_how_it_works_CxTG8U",
     "pod_products_Jej6Db",
     "pod_why_us_kyjAJq",
+    "pod_testimonials_GGddH4",
     "pod_footer_PbTK4q"
   ]
 }
